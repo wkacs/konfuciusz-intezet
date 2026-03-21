@@ -1,0 +1,824 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #c41e24;
+  --color-primary-light: #e63946;
+  --color-primary-dark: #8b0000;
+  --color-secondary: #1a1a2e;
+  --color-secondary-light: #16213e;
+  --color-accent: #d4a843;
+  --color-accent-light: #f5d06e;
+  --color-accent-dark: #b8860b;
+  --color-jade: #2d6a4f;
+  --color-jade-light: #40916c;
+  --color-surface: #faf8f5;
+  --color-surface-dark: #0a0a0f;
+  --color-surface-card: #ffffff;
+  --color-surface-card-dark: #141420;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #555555;
+  --color-text-dark-primary: #f5f0e8;
+  --color-text-dark-secondary: #c0b8a0;
+  --color-border: #e0d8cc;
+  --color-border-dark: #2a2a3a;
+  --color-cream: #f5f0e8;
+  --color-cream-dark: #e8dcc8;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-surface text-text-primary antialiased;
+  background-image:
+    radial-gradient(circle at top, rgba(212, 168, 67, 0.08), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(196, 30, 36, 0.05), transparent 28%);
+}
+
+.dark body {
+  @apply bg-surface-dark text-text-dark-primary;
+}
+
+/* ============================================
+   CHINESE ORNAMENTAL ELEMENTS
+   ============================================ */
+
+/* Corner ornament border */
+.chinese-border {
+  border: 2px solid var(--color-accent);
+  position: relative;
+}
+.chinese-border::before,
+.chinese-border::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--color-accent);
+}
+.chinese-border::before {
+  top: -4px;
+  left: -4px;
+  border-right: none;
+  border-bottom: none;
+}
+.chinese-border::after {
+  bottom: -4px;
+  right: -4px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ============================================
+   BACKGROUND PATTERNS
+   ============================================ */
+
+/* Subtle radial accent pattern */
+.chinese-pattern {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(196, 30, 36, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(212, 168, 67, 0.04) 0%, transparent 50%);
+}
+
+/* Cloud (xiangyun) pattern - traditional lucky clouds with swirl detail */
+.cloud-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='160' height='80' viewBox='0 0 160 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 50c-5 0-9-3-10-7-4-1-7-5-7-9 0-6 5-10 10-10 2-4 6-7 11-7 7 0 13 5 14 12 4 1 7 5 7 10 0 6-5 11-11 11H30z' fill='none' stroke='%23d4a843' stroke-width='0.5' opacity='0.16'/%3E%3Ccircle cx='28' cy='36' r='4' fill='none' stroke='%23d4a843' stroke-width='0.3' opacity='0.1'/%3E%3Cpath d='M28 36c2-3 5-4 8-3' fill='none' stroke='%23d4a843' stroke-width='0.3' opacity='0.1'/%3E%3Cpath d='M110 55c-4 0-7-2-8-5-3-1-5-4-5-7 0-5 4-8 8-8 1-3 5-6 9-6 6 0 10 4 11 10 3 1 6 4 6 8 0 5-4 8-9 8H110z' fill='none' stroke='%23d4a843' stroke-width='0.5' opacity='0.12'/%3E%3Ccircle cx='108' cy='42' r='3' fill='none' stroke='%23d4a843' stroke-width='0.3' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+/* Lattice (window grid) pattern - traditional Chinese window with inner diamond */
+.lattice-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 24h48M24 0v48' stroke='%23d4a843' stroke-width='0.3' opacity='0.1'/%3E%3Crect x='8' y='8' width='32' height='32' fill='none' stroke='%23d4a843' stroke-width='0.3' opacity='0.08'/%3E%3Cpath d='M24 8L40 24L24 40L8 24Z' fill='none' stroke='%23d4a843' stroke-width='0.2' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* Hexagonal ice-crack pattern with inner detail */
+.hex-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='30,2 55,15 55,37 30,50 5,37 5,15' fill='none' stroke='%23d4a843' stroke-width='0.3' opacity='0.07'/%3E%3Cpolygon points='30,12 45,20 45,32 30,40 15,32 15,20' fill='none' stroke='%23d4a843' stroke-width='0.2' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Wave (water) pattern - double wave for depth */
+.wave-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='28' viewBox='0 0 80 28' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q10 0 20 10 Q30 20 40 10 Q50 0 60 10 Q70 20 80 10' fill='none' stroke='%23d4a843' stroke-width='0.5' opacity='0.12'/%3E%3Cpath d='M0 18 Q10 10 20 18 Q30 26 40 18 Q50 10 60 18 Q70 26 80 18' fill='none' stroke='%23d4a843' stroke-width='0.3' opacity='0.07'/%3E%3C/svg%3E");
+}
+
+/* Coin pattern - round coin with square hole */
+.coin-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='12' fill='none' stroke='%23d4a843' stroke-width='0.4' opacity='0.08'/%3E%3Crect x='26' y='26' width='8' height='8' fill='none' stroke='%23d4a843' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* ============================================
+   SCROLL FRAME (ancient scroll / tekercs)
+   ============================================ */
+.scroll-frame {
+  position: relative;
+  border-left: 3px solid var(--color-accent);
+  border-right: 3px solid var(--color-accent);
+  padding-inline: 1.5rem;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
+    linear-gradient(135deg, rgba(212, 168, 67, 0.05), transparent 55%);
+  box-shadow:
+    inset 0 0 0 1px rgba(212, 168, 67, 0.12),
+    0 24px 60px rgba(0, 0, 0, 0.18);
+}
+.scroll-frame::before,
+.scroll-frame::after {
+  content: '';
+  display: block;
+  height: 24px;
+  background: linear-gradient(90deg,
+    var(--color-accent) 0%,
+    var(--color-accent-light) 20%,
+    var(--color-accent) 40%,
+    var(--color-accent-light) 60%,
+    var(--color-accent) 80%,
+    var(--color-accent-light) 100%
+  );
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(212, 168, 67, 0.2);
+  margin-inline: -1.5rem;
+}
+
+/* ============================================
+   MOONGATE (kerek ablak)
+   ============================================ */
+.moongate {
+  border: 3px solid var(--color-accent);
+  border-radius: 9999px;
+  position: relative;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.88) 0%, rgba(245, 240, 232, 0.72) 55%, rgba(245, 240, 232, 0.36) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(212, 168, 67, 0.16),
+    0 18px 36px rgba(139, 0, 0, 0.08);
+}
+.moongate::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(212, 168, 67, 0.2);
+  border-radius: 9999px;
+}
+
+/* ============================================
+   WAVE SECTION DIVIDER
+   ============================================ */
+.wave-divider {
+  position: relative;
+}
+.wave-divider::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: -10%;
+  right: -10%;
+  height: 40px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q150 0 300 20 Q450 40 600 20 Q750 0 900 20 Q1050 40 1200 20 V40 H0Z' fill='%23faf8f5'/%3E%3C/svg%3E") repeat-x;
+  background-size: 120% 100%;
+  animation: wave-divider-flow 8s ease-in-out infinite alternate;
+}
+@keyframes wave-divider-flow {
+  from { background-position: 0% bottom; }
+  to { background-position: 100% bottom; }
+}
+.wave-divider-dark::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q150 0 300 20 Q450 40 600 20 Q750 0 900 20 Q1050 40 1200 20 V40 H0Z' fill='%230a0a0f'/%3E%3C/svg%3E") no-repeat;
+  background-size: cover;
+  animation: none;
+}
+.wave-divider-cream::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q150 0 300 20 Q450 40 600 20 Q750 0 900 20 Q1050 40 1200 20 V40 H0Z' fill='%23f5f0e8'/%3E%3C/svg%3E") no-repeat;
+  background-size: cover;
+  animation: none;
+}
+
+/* Pagoda roof divider */
+.pagoda-divider {
+  position: relative;
+}
+.pagoda-divider::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  height: 20px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q50 0 100 5 Q200 -5 300 2 Q400 -5 500 5 Q550 0 600 20' fill='none' stroke='%23d4a843' stroke-width='1.5' opacity='0.4'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+}
+
+.section-silk {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-silk::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(212, 168, 67, 0.08), transparent 36%),
+    linear-gradient(315deg, rgba(196, 30, 36, 0.08), transparent 34%);
+  pointer-events: none;
+}
+
+.ornament-glow {
+  filter: drop-shadow(0 0 18px rgba(212, 168, 67, 0.18));
+}
+
+.pagoda-roof-band {
+  position: relative;
+}
+
+.pagoda-roof-band::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.55), transparent);
+}
+
+/* Pagoda top border for footer */
+.pagoda-top-border {
+  position: relative;
+}
+.pagoda-top-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      var(--color-accent-dark) 10%,
+      var(--color-accent) 25%,
+      var(--color-accent-light) 50%,
+      var(--color-accent) 75%,
+      var(--color-accent-dark) 90%,
+      transparent 100%
+    );
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 4 Q100 0 200 2 Q300 4 400 1 Q500 3 600 0 Q700 3 800 1 Q900 4 1000 2 Q1100 0 1200 4' fill='%23fff'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 4 Q100 0 200 2 Q300 4 400 1 Q500 3 600 0 Q700 3 800 1 Q900 4 1000 2 Q1100 0 1200 4' fill='%23fff'/%3E%3C/svg%3E");
+  mask-size: cover;
+  -webkit-mask-size: cover;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-accent), var(--color-primary));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-dark);
+}
+
+/* ============================================
+   LINE CLAMP UTILITIES
+   ============================================ */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* Float up and down */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Lantern sway */
+@keyframes lantern-sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+@keyframes lantern-sway-strong {
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(12deg); }
+  30% { transform: rotate(-10deg); }
+  45% { transform: rotate(7deg); }
+  60% { transform: rotate(-4deg); }
+  75% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+.animate-lantern {
+  animation: lantern-sway 3.5s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+/* Gold shimmer sweep */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(212,168,67,0.25) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 14s infinite;
+}
+
+/* Brush stroke width reveal */
+@keyframes brush-stroke {
+  0% { width: 0; opacity: 0; }
+  30% { opacity: 1; }
+  100% { width: 100%; opacity: 1; }
+}
+.animate-brush-stroke {
+  animation: brush-stroke 1.2s ease-out forwards;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Sakura petal falling - 3D natural sway */
+.sakura-petal {
+  transform-style: preserve-3d;
+}
+@keyframes sakura-fall {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg) rotateX(0deg) rotateY(0deg) scale(1.2);
+    opacity: 0;
+  }
+  8% { opacity: 0.9; }
+  25% { transform: translateY(20vh) translateX(30px) rotate(180deg) rotateX(45deg) rotateY(30deg) scale(1.1); }
+  50% { transform: translateY(50vh) translateX(-20px) rotate(360deg) rotateX(90deg) rotateY(-20deg) scale(1); }
+  75% { transform: translateY(75vh) translateX(50px) rotate(540deg) rotateX(135deg) rotateY(40deg) scale(0.85); }
+  90% { opacity: 0.7; }
+  100% {
+    transform: translateY(105vh) translateX(80px) rotate(720deg) rotateX(180deg) rotateY(60deg) scale(0.7);
+    opacity: 0;
+  }
+}
+
+/* Slow drift horizontal */
+@keyframes drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(20px); }
+}
+
+/* Glow pulse - stronger */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(196, 30, 36, 0.18); }
+  50% { box-shadow: 0 0 40px rgba(196, 30, 36, 0.35), 0 0 60px rgba(212, 168, 67, 0.15); }
+}
+.animate-glow {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* Ink reveal wipe */
+@keyframes ink-reveal {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+.animate-ink-reveal {
+  animation: ink-reveal 1s ease-out forwards;
+}
+
+/* Parallax float (slower) */
+@keyframes parallax-float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(10px, -15px) rotate(1deg); }
+  50% { transform: translate(-5px, -25px) rotate(-1deg); }
+  75% { transform: translate(-15px, -10px) rotate(0.5deg); }
+}
+.animate-parallax {
+  animation: parallax-float 20s ease-in-out infinite;
+}
+
+/* Spin slow */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 30s linear infinite;
+}
+
+/* Fade in up */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Gold border shimmer - for accent borders */
+@keyframes border-shimmer {
+  0%, 100% { border-color: rgba(212, 168, 67, 0.3); }
+  50% { border-color: rgba(212, 168, 67, 0.6); }
+}
+.animate-border-shimmer {
+  animation: border-shimmer 12s ease-in-out infinite;
+}
+
+/* Smoke/incense rising */
+@keyframes incense-rise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-40px) scaleX(1.3);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-80px) scaleX(0.7);
+    opacity: 0;
+  }
+}
+.animate-incense {
+  animation: incense-rise 4s ease-out infinite;
+}
+
+/* ============================================
+   TEXT STYLES
+   ============================================ */
+
+/* Gold gradient text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #b8860b, #d4a843, #f5d06e, #d4a843, #b8860b);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 14s ease-in-out infinite;
+}
+
+/* Red seal stamp effect */
+.seal-stamp {
+  border: 3px solid var(--color-primary);
+  border-radius: 4px;
+  padding: 4px 8px;
+  transform: rotate(-5deg);
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+/* ============================================
+   CHINESE DIVIDER WITH KNOT
+   ============================================ */
+.chinese-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.chinese-divider::before,
+.chinese-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+}
+
+/* Double-line divider */
+.chinese-divider-double {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.chinese-divider-double::before,
+.chinese-divider-double::after {
+  content: '';
+  flex: 1;
+  height: 4px;
+  border-top: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+  opacity: 0.4;
+}
+
+/* ============================================
+   SAKURA PETAL PARTICLE
+   ============================================ */
+.sakura-petal {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(ellipse at center, rgba(255, 183, 197, 0.85), rgba(255, 183, 197, 0.25));
+  border-radius: 50% 0 50% 0;
+  pointer-events: none;
+  filter: blur(0.3px);
+}
+
+/* ============================================
+   LANTERN ELEMENT
+   ============================================ */
+.lantern {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+}
+.lantern-body {
+  width: 28px;
+  height: 36px;
+  background: linear-gradient(180deg, #c41e24, #8b0000);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 20px rgba(196, 30, 36, 0.4), 0 0 40px rgba(196, 30, 36, 0.15), inset 0 -8px 12px rgba(0,0,0,0.2);
+}
+.lantern-body::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 6px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+.lantern-body::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 0 0 2px 2px;
+}
+.lantern-body-lg {
+  width: 40px;
+  height: 52px;
+  box-shadow: 0 0 30px rgba(196, 30, 36, 0.5), 0 0 60px rgba(196, 30, 36, 0.2), inset 0 -12px 16px rgba(0,0,0,0.2);
+}
+.lantern-body-lg::before {
+  width: 22px;
+  height: 8px;
+  top: -5px;
+}
+.lantern-body-lg::after {
+  width: 4px;
+  height: 12px;
+  bottom: -12px;
+}
+.lantern-string {
+  width: 1px;
+  height: 20px;
+  background: var(--color-accent);
+}
+
+/* ============================================
+   CARD HOVER EFFECTS
+   ============================================ */
+.card-chinese {
+  position: relative;
+  transition: all 0.4s ease;
+}
+.card-chinese::before,
+.card-chinese::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+}
+.card-chinese::before {
+  top: -2px;
+  left: -2px;
+  border-top-color: var(--color-accent);
+  border-left-color: var(--color-accent);
+}
+.card-chinese::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom-color: var(--color-accent);
+  border-right-color: var(--color-accent);
+}
+.card-chinese:hover::before,
+.card-chinese:hover::after {
+  width: 24px;
+  height: 24px;
+}
+.card-chinese:hover {
+  box-shadow: 0 8px 32px rgba(196, 30, 36, 0.12), 0 0 0 1px rgba(212, 168, 67, 0.18);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   DRAGON FESTIVAL — PREMIUM EFFECTS
+   ============================================ */
+
+/* Noise/grain overlay */
+.grain-overlay {
+  position: relative;
+}
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Silk texture for cream sections */
+.silk-texture {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l40 40M40 0L0 40' stroke='%23d4a853' stroke-width='0.3' opacity='0.05'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+}
+
+/* Vignette depth effect */
+.vignette {
+  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.45);
+}
+
+/* Gold foil shimmer on text */
+@keyframes shimmer-text {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.text-gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent) 0%,
+    #fff8dc 25%,
+    var(--color-accent) 50%,
+    #fff8dc 75%,
+    var(--color-accent) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-text 12s ease infinite;
+}
+
+/* Animated wave flow for WaveOrnament */
+@keyframes wave-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -60; }
+}
+.wave-animated path {
+  stroke-dasharray: 30 30;
+  animation: wave-flow 4s linear infinite;
+}
+
+/* Incense smoke float */
+@keyframes incense-float {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  15% { opacity: 0.2; }
+  50% { transform: translateY(-120px) translateX(15px) scale(1.5); opacity: 0.15; }
+  100% { transform: translateY(-250px) translateX(-10px) scale(2); opacity: 0; }
+}
+
+/* Firefly effects */
+@keyframes firefly-pulse {
+  0%, 100% { opacity: 0.15; box-shadow: 0 0 4px 1px rgba(212, 168, 83, 0.3); }
+  50% { opacity: 0.6; box-shadow: 0 0 12px 4px rgba(212, 168, 83, 0.6); }
+}
+@keyframes firefly-drift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(30px, -20px); }
+  50% { transform: translate(-10px, -40px); }
+  75% { transform: translate(20px, -15px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Golden dust rising */
+@keyframes golden-dust {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 0.25; }
+  90% { opacity: 0.15; }
+  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+
+/* Section reveal — scroll unroll */
+@keyframes section-reveal {
+  from { clip-path: inset(100% 0 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* Ornament breathing */
+@keyframes ornament-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+.animate-ornament-breathe {
+  animation: ornament-breathe 4s ease-in-out infinite;
+}
+
+/* Bamboo sway in wind */
+@keyframes bamboo-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+.animate-bamboo-sway {
+  animation: bamboo-sway 6s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Phoenix wingbeat on hover */
+@keyframes phoenix-wingbeat {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.08); }
+}
+.animate-phoenix-wingbeat:hover {
+  animation: phoenix-wingbeat 0.6s ease-in-out;
+}
+
+/* Cursor trail dot */
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+
+/* CTA hue rotation pulse */
+@keyframes hue-pulse {
+  0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+  50% { filter: hue-rotate(8deg) brightness(1.05); }
+}
+.animate-hue-pulse {
+  animation: hue-pulse 6s ease-in-out infinite;
+}
+
+/* Animated card border shimmer */
+@keyframes border-gold-shimmer {
+  0% { border-color: rgba(212, 168, 67, 0.2); }
+  50% { border-color: rgba(212, 168, 67, 0.55); }
+  100% { border-color: rgba(212, 168, 67, 0.2); }
+}
+.card-shimmer-border {
+  animation: border-gold-shimmer 12s ease-in-out infinite;
+}
+
+/* Chop-mark stamp texture */
+.chop-mark {
+  position: relative;
+  background: var(--color-primary);
+  border: 1px solid rgba(196, 30, 36, 0.5);
+  transform: rotate(-3deg);
+}
+.chop-mark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='0.12'/%3E%3C/svg%3E");
+  background-size: 64px 64px;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Reduced motion: disable all Dragon Festival effects */
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay::after { display: none; }
+  .text-gold-shimmer {
+    -webkit-text-fill-color: currentColor;
+    background: none;
+    animation: none;
+  }
+  .wave-animated path,
+  .cursor-dot,
+  .animate-ornament-breathe,
+  .animate-bamboo-sway,
+  .animate-hue-pulse,
+  .card-shimmer-border { animation: none !important; }
+  .animate-phoenix-wingbeat:hover { animation: none; }
+  .wave-divider::after { animation: none; }
+}
