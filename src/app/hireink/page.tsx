@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { PhoenixOrnament, CloudOrnament, Lantern } from "@/components/ornaments";
 import { Fireflies } from "@/components/Particles";
 import { newsItems } from "@/data/courses";
+import { useT } from "@/contexts/LanguageContext";
 
 const groupedNews = newsItems.reduce<Record<string, typeof newsItems>>((acc, item) => {
   const year = item.date.split('.')[0];
@@ -15,6 +16,8 @@ const groupedNews = newsItems.reduce<Record<string, typeof newsItems>>((acc, ite
 const years = Object.keys(groupedNews).sort((a, b) => Number(b) - Number(a));
 
 export default function NewsPage() {
+  const t = useT();
+
   return (
     <div className="min-h-screen">
       {/* ── Dark Hero Section ── */}
@@ -36,8 +39,8 @@ export default function NewsPage() {
           <SectionHeading
             as="h1"
             tone="dark"
-            title="Híreink"
-            subtitle="Intézetünk legfrissebb eseményei és hírei"
+            title={t({ hu: "Híreink", en: "News", zh: "新闻动态" })}
+            subtitle={t({ hu: "Intézetünk legfrissebb eseményei és hírei", en: "Our institute's latest events and news", zh: "学院最新活动和新闻" })}
           />
         </div>
 

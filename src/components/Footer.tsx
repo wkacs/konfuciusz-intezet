@@ -1,9 +1,13 @@
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
 import { BambooOrnament, CloudOrnament, LotusOrnament, PagodaRoofOrnament } from "@/components/ornaments";
 import { Fireflies } from "@/components/Particles";
+import { useT } from "@/contexts/LanguageContext";
 
 export function Footer() {
+  const t = useT();
+
   return (
     <footer className="pagoda-roof-band pagoda-top-border grain-overlay relative overflow-hidden bg-[#0a0a0f] text-cream/85">
       <PagodaRoofOrnament className="absolute left-1/2 top-0 h-16 w-full -translate-x-1/2 text-accent/40" />
@@ -26,12 +30,18 @@ export function Footer() {
                 <div className="absolute -bottom-0.5 -right-0.5 h-2 w-2 border-b-2 border-r-2 border-accent/60" />
               </div>
               <div>
-                <div className="text-sm font-bold text-cream">ELTE Konfuciusz Intézet</div>
+                <div className="text-sm font-bold text-cream">
+                  {t({ hu: "ELTE Konfuciusz Intézet", en: "ELTE Confucius Institute", zh: "ELTE孔子学院" })}
+                </div>
                 <div className="text-xs text-accent/80">孔子学院 · Budapest</div>
               </div>
             </div>
             <p className="mb-6 text-sm leading-relaxed text-cream/85">
-              Hiteles kínai nyelvoktatás, kulturális programok és elegáns tanulási környezet 2006 óta.
+              {t({
+                hu: "Hiteles kínai nyelvoktatás, kulturális programok és elegáns tanulási környezet 2006 óta.",
+                en: "Authentic Chinese language education, cultural programs and an elegant learning environment since 2006.",
+                zh: "自2006年以来，提供正宗的中文教育、文化活动和优雅的学习环境。",
+              })}
             </p>
             <div className="flex gap-3">
               <a
@@ -61,7 +71,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-lg border border-accent/25 bg-white/5 transition-all duration-300 hover:border-primary hover:bg-primary"
-                aria-label="Enciklopédia"
+                aria-label={t({ hu: "Enciklopédia", en: "Encyclopedia", zh: "百科全书" })}
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -71,27 +81,33 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-accent">Navigáció</h3>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-accent">
+              {t({ hu: "Navigáció", en: "Navigation", zh: "导航" })}
+            </h3>
             <ul className="space-y-3 text-sm text-cream/85">
-              <li><Link href="/nyelvtanfolyamok" className="transition-colors duration-300 hover:text-accent">Nyelvtanfolyamok</Link></li>
-              <li><Link href="/nyelvvizsgak" className="transition-colors duration-300 hover:text-accent">Nyelvvizsgák</Link></li>
-              <li><Link href="/osztondijak" className="transition-colors duration-300 hover:text-accent">Kínai Ösztöndíjak</Link></li>
-              <li><Link href="/hireink" className="transition-colors duration-300 hover:text-accent">Híreink</Link></li>
+              <li><Link href="/nyelvtanfolyamok" className="transition-colors duration-300 hover:text-accent">{t({ hu: "Nyelvtanfolyamok", en: "Language Courses", zh: "语言课程" })}</Link></li>
+              <li><Link href="/nyelvvizsgak" className="transition-colors duration-300 hover:text-accent">{t({ hu: "Nyelvvizsgák", en: "Language Exams", zh: "语言考试" })}</Link></li>
+              <li><Link href="/osztondijak" className="transition-colors duration-300 hover:text-accent">{t({ hu: "Kínai Ösztöndíjak", en: "Chinese Scholarships", zh: "中国奖学金" })}</Link></li>
+              <li><Link href="/hireink" className="transition-colors duration-300 hover:text-accent">{t({ hu: "Híreink", en: "News", zh: "新闻动态" })}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-accent">Források</h3>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-accent">
+              {t({ hu: "Források", en: "Resources", zh: "资源" })}
+            </h3>
             <ul className="space-y-3 text-sm text-cream/85">
-              <li><Link href="/letoltesek" className="transition-colors duration-300 hover:text-accent">Letöltések</Link></li>
-              <li><a href="https://wiki.konfuciuszintezet.hu/index.php" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-accent">Enciklopédia</a></li>
-              <li><a href="https://www.youtube.com/user/Konfuciusz" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-accent">Konfuciusz Konyhája</a></li>
+              <li><Link href="/letoltesek" className="transition-colors duration-300 hover:text-accent">{t({ hu: "Letöltések", en: "Downloads", zh: "下载中心" })}</Link></li>
+              <li><a href="https://wiki.konfuciuszintezet.hu/index.php" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-accent">{t({ hu: "Enciklopédia", en: "Encyclopedia", zh: "百科全书" })}</a></li>
+              <li><a href="https://www.youtube.com/user/Konfuciusz" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-accent">{t({ hu: "Konfuciusz Konyhája", en: "Confucius Kitchen", zh: "孔子厨房" })}</a></li>
               <li><a href="http://confucius-institutes.eu/" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-accent">CEETC</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-accent">Elérhetőség</h3>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-accent">
+              {t({ hu: "Elérhetőség", en: "Contact", zh: "联系方式" })}
+            </h3>
             <ul className="space-y-3 text-sm text-cream/85">
               <li className="flex gap-2">
                 <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -116,7 +132,11 @@ export function Footer() {
                 <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                H-Cs: 10:30-18:30 | P: zárva
+                {t({
+                  hu: "H-Cs: 10:30-18:30 | P: zárva",
+                  en: "Mon-Thu: 10:30-18:30 | Fri: closed",
+                  zh: "周一至周四：10:30-18:30 | 周五：休息",
+                })}
               </li>
             </ul>
           </div>
@@ -129,15 +149,32 @@ export function Footer() {
             <span className="hidden h-px w-14 bg-accent/35 sm:block" />
           </div>
           <p className="mt-4 text-sm italic text-cream/80">
-            &ldquo;A nemes ember óvatos tartózkodást tanúsít mindenben, amihez nem ért.&rdquo; — 孔子 (Kǒngzǐ)
+            {t({
+              hu: "\u201CA nemes ember óvatos tartózkodást tanúsít mindenben, amihez nem ért.\u201D — 孔子 (Kǒngzǐ)",
+              en: "\u201CThe superior man, in regard to what he does not know, shows a cautious reserve.\u201D — 孔子 (Confucius)",
+              zh: "\u201C君子于其所不知，盖阙如也。\u201D —— 孔子",
+            })}
           </p>
         </div>
 
         <div className="border-t border-accent/15 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 text-xs text-cream/75 md:flex-row">
-            <p>&copy; {new Date().getFullYear()} ELTE Konfuciusz Intézet, Budapest. Minden jog fenntartva.</p>
+            <p>
+              &copy; {new Date().getFullYear()}{" "}
+              {t({
+                hu: "ELTE Konfuciusz Intézet, Budapest. Minden jog fenntartva.",
+                en: "ELTE Confucius Institute, Budapest. All rights reserved.",
+                zh: "ELTE孔子学院，布达佩斯。版权所有。",
+              })}
+            </p>
             <div className="flex gap-4">
-              <span>Adószám (Magyar Kína-kutatásért Alapítvány): 18180640-1-42</span>
+              <span>
+                {t({
+                  hu: "Adószám (Magyar Kína-kutatásért Alapítvány): 18180640-1-42",
+                  en: "Tax ID (Hungarian Foundation for China Studies): 18180640-1-42",
+                  zh: "税号（匈牙利中国研究基金会）：18180640-1-42",
+                })}
+              </span>
             </div>
           </div>
         </div>

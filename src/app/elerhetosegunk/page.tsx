@@ -12,8 +12,12 @@ import {
 import { Fireflies } from "@/components/Particles";
 import { TiltCard } from "@/components/TiltCard";
 import { staff } from "@/data/courses";
+import { useT, useLanguage } from "@/contexts/LanguageContext";
 
 export default function ContactPage() {
+  const t = useT();
+  const { lang } = useLanguage();
+
   return (
     <div className="min-h-screen">
       {/* ── Dark Hero Section ── */}
@@ -35,8 +39,8 @@ export default function ContactPage() {
           <SectionHeading
             as="h1"
             tone="dark"
-            title="Elérhetőségünk"
-            subtitle="Látogasson meg minket személyesen, vagy vegye fel velünk a kapcsolatot."
+            title={t({ hu: "Elérhetőségünk", en: "Contact Us", zh: "联系我们" })}
+            subtitle={t({ hu: "Látogasson meg minket személyesen, vagy vegye fel velünk a kapcsolatot.", en: "Visit us in person or get in touch.", zh: "欢迎亲临参观或与我们联系。" })}
           />
         </div>
 
@@ -47,9 +51,9 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-3">
             {[
-              { icon: "📍", title: "Cím", content: "1088 Budapest, Múzeum krt. 4/F., I. em. 16." },
-              { icon: "📞", title: "Telefon", content: "(36)-(1)-411-6597\n(36)-(1)-411-65-00/5401\n+36 30 144 3123\nFax: (36)-(1)-411-65-98" },
-              { icon: "🕐", title: "Ügyfélfogadás", content: "Hétfőtől csütörtökig: 10:30-18:30\nPénteken: nincs ügyfélfogadás\n\nE-mail: office@konfuciusz.elte.hu\nTanfolyam-jelentkezés: kristaly.agnes@konfuciusz.elte.hu" },
+              { icon: "📍", title: t({ hu: "Cím", en: "Address", zh: "地址" }), content: "1088 Budapest, Múzeum krt. 4/F., I. em. 16." },
+              { icon: "📞", title: t({ hu: "Telefon", en: "Phone", zh: "电话" }), content: "(36)-(1)-411-6597\n(36)-(1)-411-65-00/5401\n+36 30 144 3123\nFax: (36)-(1)-411-65-98" },
+              { icon: "🕐", title: t({ hu: "Ügyfélfogadás", en: "Office Hours", zh: "办公时间" }), content: t({ hu: "Hétfőtől csütörtökig: 10:30-18:30\nPénteken: nincs ügyfélfogadás", en: "Monday to Thursday: 10:30-18:30\nFriday: closed", zh: "周一至周四：10:30-18:30\n周五：休息" }) + "\n\nE-mail: office@konfuciusz.elte.hu\n" + t({ hu: "Tanfolyam-jelentkezés:", en: "Course registration:", zh: "课程报名：" }) + " kristaly.agnes@konfuciusz.elte.hu" },
             ].map((item) => (
               <div
                 key={item.title}
@@ -81,8 +85,8 @@ export default function ContactPage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             tone="dark"
-            title="Munkatársaink"
-            subtitle="Intézetünk szakértő csapata"
+            title={t({ hu: "Munkatársaink", en: "Our Team", zh: "我们的团队" })}
+            subtitle={t({ hu: "Intézetünk szakértő csapata", en: "Our institute's expert team", zh: "学院的专业团队" })}
           />
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -94,7 +98,7 @@ export default function ContactPage() {
                   </div>
                   <div className="min-w-0">
                     <div className="text-sm font-semibold text-cream">{member.name}</div>
-                    <div className="text-xs text-cream/60">{member.role}</div>
+                    <div className="text-xs text-cream/60">{member.role[lang]}</div>
                     {member.email && (
                       <a href={`mailto:${member.email}`} className="text-xs text-accent hover:text-accent/80 transition-colors">
                         {member.email}
@@ -121,13 +125,21 @@ export default function ContactPage() {
             <div className="relative">
               <SectionHeading
                 tone="dark"
-                title="Az intézetről"
-                subtitle="Az ELTE Konfuciusz Intézet 2006-ban alakult, és azóta számos elismerést kapott. 5 városban, 21 intézményben működik, évente több mint 2500 diákot oktat 28 anyanyelvű szaktanár bevonásával. Évente 8 vizsgát szervez, több mint 800 vizsgázóval."
+                title={t({ hu: "Az intézetről", en: "About the Institute", zh: "关于学院" })}
+                subtitle={t({
+                  hu: "Az ELTE Konfuciusz Intézet 2006-ban alakult, és azóta számos elismerést kapott. 5 városban, 21 intézményben működik, évente több mint 2500 diákot oktat 28 anyanyelvű szaktanár bevonásával. Évente 8 vizsgát szervez, több mint 800 vizsgázóval.",
+                  en: "The ELTE Confucius Institute was founded in 2006 and has received numerous recognitions since. It operates in 5 cities, across 21 institutions, teaching over 2,500 students annually with the involvement of 28 native-speaking teachers. It organizes 8 exams per year, with more than 800 examinees.",
+                  zh: "ELTE孔子学院成立于2006年，此后获得了众多荣誉。学院在5个城市、21所机构开展工作，每年有28名母语教师教授超过2500名学生。每年举办8次考试，考生超过800人。",
+                })}
                 titleClassName="text-2xl sm:text-3xl"
                 subtitleClassName="max-w-4xl text-cream/85"
               />
               <p className="mt-4 text-cream/85">
-                Hanban Kiválósági tanúsítványok: 2007, 2009, 2011, 2013. Modell Konfuciusz Intézet: 2015. Kiváló HSK vizsgaközpont: 2020, 2021, 2022, 2023, 2025. Modell Kínai Nyelvvizsgaközpont: 2024.
+                {t({
+                  hu: "Hanban Kiválósági tanúsítványok: 2007, 2009, 2011, 2013. Modell Konfuciusz Intézet: 2015. Kiváló HSK vizsgaközpont: 2020, 2021, 2022, 2023, 2025. Modell Kínai Nyelvvizsgaközpont: 2024.",
+                  en: "Hanban Certificates of Excellence: 2007, 2009, 2011, 2013. Model Confucius Institute: 2015. Outstanding HSK Exam Center: 2020, 2021, 2022, 2023, 2025. Model Chinese Language Exam Center: 2024.",
+                  zh: "汉办优秀证书：2007、2009、2011、2013年。模范孔子学院：2015年。优秀HSK考点：2020、2021、2022、2023、2025年。模范中文考试中心：2024年。",
+                })}
               </p>
             </div>
           </div>
@@ -147,7 +159,7 @@ export default function ContactPage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             tone="dark"
-            title="Partnerszervezetek"
+            title={t({ hu: "Partnerszervezetek", en: "Partner Organizations", zh: "合作机构" })}
           />
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -168,7 +180,7 @@ export default function ContactPage() {
                   {partner.name}
                 </h3>
                 <span className="mt-2 inline-flex items-center gap-1 text-xs text-accent/70 transition-colors group-hover:text-accent">
-                  Meglátogatás
+                  {t({ hu: "Meglátogatás", en: "Visit", zh: "访问" })}
                   <svg className="h-3 w-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
@@ -181,9 +193,9 @@ export default function ContactPage() {
           <div className="mt-12 relative rounded-[1.5rem] border border-accent/30 bg-white/[0.05] p-8 backdrop-blur-md">
             <div className="absolute left-0 top-0 h-6 w-6 border-l-2 border-t-2 border-accent/40" />
             <div className="absolute bottom-0 right-0 h-6 w-6 border-b-2 border-r-2 border-accent/40" />
-            <h3 className="mb-3 text-lg font-bold text-cream">Támogasson minket adója 1%-ával!</h3>
+            <h3 className="mb-3 text-lg font-bold text-cream">{t({ hu: "Támogasson minket adója 1%-ával!", en: "Support us with 1% of your tax!", zh: "用您1%的税款支持我们！" })}</h3>
             <p className="text-sm text-cream/70">
-              Magyar Kína-kutatásért Alapítvány adószáma:{" "}
+              {t({ hu: "Magyar Kína-kutatásért Alapítvány adószáma:", en: "Tax ID of Hungarian Foundation for China Studies:", zh: "匈牙利中国研究基金会税号：" })}{" "}
               <span className="font-mono font-bold text-accent">18180640-1-42</span>
             </p>
           </div>

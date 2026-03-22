@@ -14,8 +14,12 @@ import {
   PagodaRoofOrnament,
   PhoenixOrnament,
 } from "@/components/ornaments";
+import { useT, useLanguage } from "@/contexts/LanguageContext";
 
 export default function PricingPage() {
+  const t = useT();
+  const { lang } = useLanguage();
+
   return (
     <div className="min-h-screen">
       {/* ═══════════ HERO — Dark ═══════════ */}
@@ -40,8 +44,8 @@ export default function PricingPage() {
           <SectionHeading
             as="h1"
             tone="dark"
-            title="Áraink"
-            subtitle="Nyelvtanfolyamaink és kulturális programjaink díjai."
+            title={t({ hu: "Áraink", en: "Our Prices", zh: "价格" })}
+            subtitle={t({ hu: "Nyelvtanfolyamaink és kulturális programjaink díjai.", en: "Fees for our language courses and cultural programs.", zh: "我们语言课程和文化活动的收费标准。" })}
           />
         </div>
 
@@ -55,7 +59,7 @@ export default function PricingPage() {
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            title="Nyelvtanfolyam árak"
+            title={t({ hu: "Nyelvtanfolyam árak", en: "Language Course Prices", zh: "语言课程价格" })}
             tone="light"
             withSeal={false}
             className="mb-12"
@@ -64,7 +68,7 @@ export default function PricingPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {prices.map((item) => (
               <div
-                key={item.level}
+                key={item.level[lang]}
                 className={`relative rounded-[1.5rem] border p-8 text-center transition-all hover:shadow-lg ${
                   item.numericPrice === 0
                     ? "border-jade/20 bg-jade/5 hover:border-jade/40"
@@ -83,21 +87,21 @@ export default function PricingPage() {
                   <>
                     <div className="absolute left-0 right-0 top-0 h-1 rounded-t-[1.5rem] bg-gradient-to-r from-primary via-accent to-primary" />
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-lg bg-primary px-3 py-1 text-xs font-semibold text-cream">
-                      Legnépszerűbb
+                      {t({ hu: "Legnépszerűbb", en: "Most Popular", zh: "最受欢迎" })}
                     </div>
                   </>
                 )}
 
-                <h3 className="mb-2 text-lg font-bold text-text-primary">{item.level}</h3>
+                <h3 className="mb-2 text-lg font-bold text-text-primary">{item.level[lang]}</h3>
                 <div
                   className={`mb-4 text-3xl font-bold ${item.numericPrice === 0 ? "text-jade" : "text-primary"}`}
                 >
-                  {item.price}
+                  {item.price[lang]}
                 </div>
                 <div className="text-sm text-text-secondary">
                   {item.numericPrice === 0
-                    ? "Ismerkedjen meg a kínai nyelvvel!"
-                    : "per tanfolyam / modul"}
+                    ? t({ hu: "Ismerkedjen meg a kínai nyelvvel!", en: "Get to know the Chinese language!", zh: "了解中文！" })
+                    : t({ hu: "per tanfolyam / modul", en: "per course / module", zh: "每期课程/模块" })}
                 </div>
               </div>
             ))}
@@ -135,8 +139,8 @@ export default function PricingPage() {
                 <SectionHeading
                   tone="dark"
                   withSeal={false}
-                  title="50% kedvezmény ELTE-seknek!"
-                  subtitle="ELTE hallgatók, ELTE Alumni tagok és ELTE alkalmazottak 50%-os kedvezménnyel vehetik igénybe a teljes árú, vagyis a 40 000 Ft-os nyelvtanfolyamainkat. A kedvezmény más akciókkal nem összevonható."
+                  title={t({ hu: "50% kedvezmény ELTE-seknek!", en: "50% Discount for ELTE Members!", zh: "ELTE成员享受50%折扣！" })}
+                  subtitle={t({ hu: "ELTE hallgatók, ELTE Alumni tagok és ELTE alkalmazottak 50%-os kedvezménnyel vehetik igénybe a teljes árú, vagyis a 40 000 Ft-os nyelvtanfolyamainkat. A kedvezmény más akciókkal nem összevonható.", en: "ELTE students, ELTE Alumni members and ELTE employees can take our full-price (40,000 HUF) language courses with a 50% discount. This discount cannot be combined with other offers.", zh: "ELTE学生、ELTE校友会成员和ELTE员工可享受我们全价（40,000福林）语言课程50%的折扣。此折扣不可与其他优惠叠加使用。" })}
                   titleClassName="text-2xl sm:text-2xl text-accent"
                   subtitleClassName="max-w-none text-cream/85"
                 />
@@ -155,7 +159,7 @@ export default function PricingPage() {
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            title="Kulturális tanfolyamok"
+            title={t({ hu: "Kulturális tanfolyamok", en: "Cultural Courses", zh: "文化课程" })}
             tone="light"
             withSeal={false}
             className="mb-12"
@@ -170,11 +174,11 @@ export default function PricingPage() {
               <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 border-b-2 border-r-2 border-accent/60" />
 
               <div className="mb-3 h-1 w-16 rounded-full bg-gradient-to-r from-primary via-accent to-primary" />
-              <h3 className="mb-2 text-lg font-bold text-text-primary">Kalligráfia / Festészet</h3>
+              <h3 className="mb-2 text-lg font-bold text-text-primary">{t({ hu: "Kalligráfia / Festészet", en: "Calligraphy / Painting", zh: "书法/绘画" })}</h3>
               <div className="mb-2 text-2xl font-bold text-primary">25 000 Ft</div>
-              <p className="text-sm text-text-secondary">10 alkalommal, anyagokat biztosítjuk</p>
+              <p className="text-sm text-text-secondary">{t({ hu: "10 alkalommal, anyagokat biztosítjuk", en: "10 sessions, materials provided", zh: "共10节课，提供材料" })}</p>
               <p className="mt-2 text-sm text-accent-dark">
-                ELTE alkalmazottaknak és alumni tagoknak 10% kedvezmény
+                {t({ hu: "ELTE alkalmazottaknak és alumni tagoknak 10% kedvezmény", en: "10% discount for ELTE employees and alumni", zh: "ELTE员工和校友享受10%折扣" })}
               </p>
             </div>
 
@@ -186,13 +190,13 @@ export default function PricingPage() {
               <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 border-b-2 border-r-2 border-accent/60" />
 
               <div className="mb-3 h-1 w-16 rounded-full bg-gradient-to-r from-primary via-accent to-primary" />
-              <h3 className="mb-2 text-lg font-bold text-text-primary">Magántanfolyamok</h3>
-              <div className="mb-2 text-2xl font-bold text-primary">Egyedi árazás</div>
+              <h3 className="mb-2 text-lg font-bold text-text-primary">{t({ hu: "Magántanfolyamok", en: "Private Lessons", zh: "私教课程" })}</h3>
+              <div className="mb-2 text-2xl font-bold text-primary">{t({ hu: "Egyedi árazás", en: "Custom Pricing", zh: "定制价格" })}</div>
               <p className="text-sm text-text-secondary">
-                Az óraszámot és időbeosztást egyénileg egyeztetjük.
+                {t({ hu: "Az óraszámot és időbeosztást egyénileg egyeztetjük.", en: "Hours and schedule are arranged individually.", zh: "课时和时间安排将单独协商。" })}
               </p>
               <p className="mt-2 text-sm">
-                Érdeklődés:{" "}
+                {t({ hu: "Érdeklődés:", en: "Inquiries:", zh: "咨询：" })}{" "}
                 <MagneticButton className="inline-block">
                   <a
                     href="mailto:veres.judit@konfuciusz.elte.hu"

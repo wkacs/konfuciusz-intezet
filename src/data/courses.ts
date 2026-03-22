@@ -1,10 +1,12 @@
+import type { Language } from "@/contexts/LanguageContext";
+
 export interface Course {
   code: string;
   level: string;
   type: 'online' | 'classroom' | 'hybrid';
   startDate: string;
   endDate: string;
-  schedule: string;
+  schedule: { hu: string; en: string; zh: string };
   time: string;
   instructor: string;
   fee: number;
@@ -20,22 +22,22 @@ export interface NewsItem {
 
 export interface StaffMember {
   name: string;
-  role: string;
+  role: { hu: string; en: string; zh: string };
   email?: string;
   phone?: string;
 }
 
 export interface ExamDate {
-  date: string;
-  levels: string;
-  registrationDeadline: string;
-  resultsDate: string;
-  note?: string;
+  date: { hu: string; en: string; zh: string };
+  levels: { hu: string; en: string; zh: string };
+  registrationDeadline: { hu: string; en: string; zh: string };
+  resultsDate: { hu: string; en: string; zh: string };
+  note?: { hu: string; en: string; zh: string };
 }
 
 export interface PriceItem {
-  level: string;
-  price: string;
+  level: { hu: string; en: string; zh: string };
+  price: { hu: string; en: string; zh: string };
   numericPrice: number;
 }
 
@@ -46,71 +48,127 @@ export interface Download {
 }
 
 export interface CulturalCourse {
-  title: string;
-  startDate: string;
-  schedule: string;
+  title: { hu: string; en: string; zh: string };
+  startDate: { hu: string; en: string; zh: string };
+  schedule: { hu: string; en: string; zh: string };
   location: string;
   instructor: string;
-  fee: string;
-  description: string;
+  fee: { hu: string; en: string; zh: string };
+  description: { hu: string; en: string; zh: string };
 }
 
-export const navItems = [
-  { label: 'Nyitólap', href: '/' },
-  { label: 'Nyelvtanfolyamok', href: '/nyelvtanfolyamok' },
-  { label: 'Nyelvvizsgák', href: '/nyelvvizsgak' },
-  { label: 'Kínai ösztöndíjak', href: '/osztondijak' },
-  { label: 'Letöltések', href: '/letoltesek' },
-  { label: 'Híreink', href: '/hireink' },
-  { label: 'Elérhetőségünk', href: '/elerhetosegunk' },
+export interface NavItem {
+  label: { hu: string; en: string; zh: string };
+  href: string;
+}
+
+export const navItems: NavItem[] = [
+  { label: { hu: 'Nyitólap', en: 'Home', zh: '首页' }, href: '/' },
+  { label: { hu: 'Nyelvtanfolyamok', en: 'Language Courses', zh: '语言课程' }, href: '/nyelvtanfolyamok' },
+  { label: { hu: 'Nyelvvizsgák', en: 'Language Exams', zh: '语言考试' }, href: '/nyelvvizsgak' },
+  { label: { hu: 'Kínai ösztöndíjak', en: 'Chinese Scholarships', zh: '中国奖学金' }, href: '/osztondijak' },
+  { label: { hu: 'Letöltések', en: 'Downloads', zh: '下载中心' }, href: '/letoltesek' },
+  { label: { hu: 'Híreink', en: 'News', zh: '新闻动态' }, href: '/hireink' },
+  { label: { hu: 'Elérhetőségünk', en: 'Contact', zh: '联系我们' }, href: '/elerhetosegunk' },
 ];
 
 export const culturalCourses: CulturalCourse[] = [
   {
-    title: 'Kalligráfia-tanfolyam – 10 alkalommal',
-    startDate: '2026. március 9.',
-    schedule: 'Hétfőnként 17:30-19:00',
+    title: {
+      hu: 'Kalligráfia-tanfolyam – 10 alkalommal',
+      en: 'Calligraphy Course – 10 Sessions',
+      zh: '书法课程 – 共10节课',
+    },
+    startDate: {
+      hu: '2026. március 9.',
+      en: 'March 9, 2026',
+      zh: '2026年3月9日',
+    },
+    schedule: {
+      hu: 'Hétfőnként 17:30-19:00',
+      en: 'Mondays 17:30-19:00',
+      zh: '每周一 17:30-19:00',
+    },
     location: 'Tőkei terem (1/1-es)',
     instructor: 'Horváth Janisz',
-    fee: '25 000 Ft (ELTE alkalmazottaknak és alumni tagoknak 10% kedvezmény)',
-    description: 'A kínai kalligráfia a kínai kultúra egyik legfontosabb művészeti ága. A tanfolyam során megismerkedhet a kalligráfia alapjaival, eszközeivel és technikáival. Az anyagokat biztosítjuk.',
+    fee: {
+      hu: '25 000 Ft (ELTE alkalmazottaknak és alumni tagoknak 10% kedvezmény)',
+      en: '25,000 HUF (10% discount for ELTE employees and alumni)',
+      zh: '25,000福林（ELTE员工和校友享受10%折扣）',
+    },
+    description: {
+      hu: 'A kínai kalligráfia a kínai kultúra egyik legfontosabb művészeti ága. A tanfolyam során megismerkedhet a kalligráfia alapjaival, eszközeivel és technikáival. Az anyagokat biztosítjuk.',
+      en: 'Chinese calligraphy is one of the most important art forms of Chinese culture. In this course, you will learn the basics, tools, and techniques of calligraphy. Materials are provided.',
+      zh: '中国书法是中国文化最重要的艺术形式之一。本课程将带您了解书法的基础知识、工具和技法。课程提供所需材料。',
+    },
   },
   {
-    title: 'Peónia-, rózsa- és gyümölcsfestészeti tanfolyam',
-    startDate: '2026. március 12.',
-    schedule: 'Csütörtökönként 17:30-19:00',
+    title: {
+      hu: 'Peónia-, rózsa- és gyümölcsfestészeti tanfolyam',
+      en: 'Peony, Rose and Fruit Painting Course',
+      zh: '牡丹、玫瑰与水果绘画课程',
+    },
+    startDate: {
+      hu: '2026. március 12.',
+      en: 'March 12, 2026',
+      zh: '2026年3月12日',
+    },
+    schedule: {
+      hu: 'Csütörtökönként 17:30-19:00',
+      en: 'Thursdays 17:30-19:00',
+      zh: '每周四 17:30-19:00',
+    },
     location: 'Tőkei terem (1/1-es)',
     instructor: 'Horváth Janisz',
-    fee: '25 000 Ft (ELTE alkalmazottaknak és alumni tagoknak 10% kedvezmény)',
-    description: 'Hagyományos kínai festészeti technikákra épülő tanfolyam, amely a peónia, rózsa és egyéb virágok, valamint gyümölcsök festészetére fókuszál. Az anyagokat biztosítjuk.',
+    fee: {
+      hu: '25 000 Ft (ELTE alkalmazottaknak és alumni tagoknak 10% kedvezmény)',
+      en: '25,000 HUF (10% discount for ELTE employees and alumni)',
+      zh: '25,000福林（ELTE员工和校友享受10%折扣）',
+    },
+    description: {
+      hu: 'Hagyományos kínai festészeti technikákra épülő tanfolyam, amely a peónia, rózsa és egyéb virágok, valamint gyümölcsök festészetére fókuszál. Az anyagokat biztosítjuk.',
+      en: 'A course based on traditional Chinese painting techniques, focusing on painting peonies, roses, other flowers, and fruits. Materials are provided.',
+      zh: '本课程以中国传统绘画技法为基础，重点教授牡丹、玫瑰及其他花卉和水果的绘画技巧。课程提供所需材料。',
+    },
   },
 ];
 
+const scheduleMap: Record<string, { hu: string; en: string; zh: string }> = {
+  'Hétfő-Szerda': { hu: 'Hétfő-Szerda', en: 'Mon-Wed', zh: '周一-周三' },
+  'Hétfő-Csütörtök': { hu: 'Hétfő-Csütörtök', en: 'Mon-Thu', zh: '周一-周四' },
+  'Kedd-Csütörtök': { hu: 'Kedd-Csütörtök', en: 'Tue-Thu', zh: '周二-周四' },
+  'Naponta': { hu: 'Naponta', en: 'Daily', zh: '每天' },
+};
+
+function sched(hu: string): { hu: string; en: string; zh: string } {
+  return scheduleMap[hu] ?? { hu, en: hu, zh: hu };
+}
+
 export const startingCourses: Course[] = [
-  { code: '2026/44', level: 'A2.1', type: 'online', startDate: '2026.03.18.', endDate: '2026.05.18.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Borsódi Réka', fee: 40000 },
-  { code: '2026/43', level: 'B2.1', type: 'classroom', startDate: '2026.03.18.', endDate: '2026.05.18.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Cai Shaowei', fee: 40000 },
-  { code: '2026/46', level: 'A1.2', type: 'online', startDate: '2026.03.23.', endDate: '2026.05.20.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Liu Daoyuan', fee: 28000 },
-  { code: '2026/47', level: 'A1.2', type: 'online', startDate: '2026.03.23.', endDate: '2026.05.20.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Liu Ming', fee: 28000 },
-  { code: '2026/45', level: 'A2.1', type: 'online', startDate: '2026.03.23.', endDate: '2026.05.18.', schedule: 'Hétfő-Csütörtök', time: '11:00-12:30', instructor: 'Fülöp Andrea', fee: 40000 },
-  { code: '2026/48', level: 'A1.1', type: 'classroom', startDate: '2026.03.23.', endDate: '2026.05.20.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Olajos István', fee: 20000 },
-  { code: '2026/49', level: 'A2.1', type: 'classroom', startDate: '2026.03.24.', endDate: '2026.05.14.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Borsódi Réka', fee: 40000 },
-  { code: '2026/50', level: 'A2.4', type: 'online', startDate: '2026.03.30.', endDate: '2026.06.01.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Chen Yingying', fee: 40000 },
-  { code: '2026/51', level: 'HSK6', type: 'hybrid', startDate: '2026.03.30.', endDate: '2026.06.01.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Xu Xiaokai', fee: 40000 },
-  { code: '2026/52', level: 'B1.2', type: 'classroom', startDate: '2026.03.31.', endDate: '2026.05.21.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Jin Xiaoyuan', fee: 40000 },
-  { code: '2026/55', level: 'A2.2', type: 'online', startDate: '2026.04.07.', endDate: '2026.05.28.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Liu Daoyuan', fee: 40000 },
-  { code: '2026/53', level: 'Ismerkedő', type: 'online', startDate: '2026.04.07.', endDate: '2026.04.20.', schedule: 'Naponta', time: '18:00-19:30', instructor: 'Chi Ying', fee: 0, isFree: true },
-  { code: '2026/54', level: 'B1.5', type: 'online', startDate: '2026.04.07.', endDate: '2026.05.28.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Cai Shaowei', fee: 40000 },
-  { code: '2026/56', level: 'A2.3', type: 'online', startDate: '2026.04.08.', endDate: '2026.06.08.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Zhong Manni', fee: 40000 },
-  { code: '2026/57', level: 'A2.1', type: 'online', startDate: '2026.04.08.', endDate: '2026.06.08.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Tan Huixin', fee: 40000 },
-  { code: '2026/58', level: 'B1.1', type: 'online', startDate: '2026.04.08.', endDate: '2026.06.08.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Jin Xiaoyuan', fee: 40000 },
-  { code: '2026/59', level: 'C1.1', type: 'online', startDate: '2026.04.09.', endDate: '2026.06.02.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Tan Huixin', fee: 40000 },
-  { code: '2026/60', level: 'A2.2', type: 'online', startDate: '2026.04.14.', endDate: '2026.06.04.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Lu Yinyin', fee: 40000 },
-  { code: '2026/61', level: 'B1.2', type: 'online', startDate: '2026.04.16.', endDate: '2026.06.09.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Chen Yingying', fee: 40000 },
-  { code: '2026/64', level: 'A1.2', type: 'classroom', startDate: '2026.04.16.', endDate: '2026.06.09.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Kang Lei', fee: 28000 },
-  { code: '2026/63', level: 'A1.2', type: 'classroom', startDate: '2026.04.16.', endDate: '2026.06.09.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Zhang Xinrui', fee: 28000 },
-  { code: '2026/62', level: 'B2.5', type: 'classroom', startDate: '2026.04.16.', endDate: '2026.06.09.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Wang Lu', fee: 40000 },
-  { code: '2026/65', level: 'B1.5', type: 'online', startDate: '2026.04.20.', endDate: '2026.06.17.', schedule: 'Hétfő-Szerda', time: '18:00-19:30', instructor: 'Lu Yinyin', fee: 40000 },
-  { code: '2026/66', level: 'B1.4', type: 'online', startDate: '2026.04.21.', endDate: '2026.06.11.', schedule: 'Kedd-Csütörtök', time: '18:00-19:30', instructor: 'Luo Chi', fee: 40000 },
+  { code: '2026/44', level: 'A2.1', type: 'online', startDate: '2026.03.18.', endDate: '2026.05.18.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Borsódi Réka', fee: 40000 },
+  { code: '2026/43', level: 'B2.1', type: 'classroom', startDate: '2026.03.18.', endDate: '2026.05.18.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Cai Shaowei', fee: 40000 },
+  { code: '2026/46', level: 'A1.2', type: 'online', startDate: '2026.03.23.', endDate: '2026.05.20.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Liu Daoyuan', fee: 28000 },
+  { code: '2026/47', level: 'A1.2', type: 'online', startDate: '2026.03.23.', endDate: '2026.05.20.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Liu Ming', fee: 28000 },
+  { code: '2026/45', level: 'A2.1', type: 'online', startDate: '2026.03.23.', endDate: '2026.05.18.', schedule: sched('Hétfő-Csütörtök'), time: '11:00-12:30', instructor: 'Fülöp Andrea', fee: 40000 },
+  { code: '2026/48', level: 'A1.1', type: 'classroom', startDate: '2026.03.23.', endDate: '2026.05.20.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Olajos István', fee: 20000 },
+  { code: '2026/49', level: 'A2.1', type: 'classroom', startDate: '2026.03.24.', endDate: '2026.05.14.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Borsódi Réka', fee: 40000 },
+  { code: '2026/50', level: 'A2.4', type: 'online', startDate: '2026.03.30.', endDate: '2026.06.01.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Chen Yingying', fee: 40000 },
+  { code: '2026/51', level: 'HSK6', type: 'hybrid', startDate: '2026.03.30.', endDate: '2026.06.01.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Xu Xiaokai', fee: 40000 },
+  { code: '2026/52', level: 'B1.2', type: 'classroom', startDate: '2026.03.31.', endDate: '2026.05.21.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Jin Xiaoyuan', fee: 40000 },
+  { code: '2026/55', level: 'A2.2', type: 'online', startDate: '2026.04.07.', endDate: '2026.05.28.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Liu Daoyuan', fee: 40000 },
+  { code: '2026/53', level: 'Ismerkedő', type: 'online', startDate: '2026.04.07.', endDate: '2026.04.20.', schedule: sched('Naponta'), time: '18:00-19:30', instructor: 'Chi Ying', fee: 0, isFree: true },
+  { code: '2026/54', level: 'B1.5', type: 'online', startDate: '2026.04.07.', endDate: '2026.05.28.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Cai Shaowei', fee: 40000 },
+  { code: '2026/56', level: 'A2.3', type: 'online', startDate: '2026.04.08.', endDate: '2026.06.08.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Zhong Manni', fee: 40000 },
+  { code: '2026/57', level: 'A2.1', type: 'online', startDate: '2026.04.08.', endDate: '2026.06.08.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Tan Huixin', fee: 40000 },
+  { code: '2026/58', level: 'B1.1', type: 'online', startDate: '2026.04.08.', endDate: '2026.06.08.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Jin Xiaoyuan', fee: 40000 },
+  { code: '2026/59', level: 'C1.1', type: 'online', startDate: '2026.04.09.', endDate: '2026.06.02.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Tan Huixin', fee: 40000 },
+  { code: '2026/60', level: 'A2.2', type: 'online', startDate: '2026.04.14.', endDate: '2026.06.04.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Lu Yinyin', fee: 40000 },
+  { code: '2026/61', level: 'B1.2', type: 'online', startDate: '2026.04.16.', endDate: '2026.06.09.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Chen Yingying', fee: 40000 },
+  { code: '2026/64', level: 'A1.2', type: 'classroom', startDate: '2026.04.16.', endDate: '2026.06.09.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Kang Lei', fee: 28000 },
+  { code: '2026/63', level: 'A1.2', type: 'classroom', startDate: '2026.04.16.', endDate: '2026.06.09.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Zhang Xinrui', fee: 28000 },
+  { code: '2026/62', level: 'B2.5', type: 'classroom', startDate: '2026.04.16.', endDate: '2026.06.09.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Wang Lu', fee: 40000 },
+  { code: '2026/65', level: 'B1.5', type: 'online', startDate: '2026.04.20.', endDate: '2026.06.17.', schedule: sched('Hétfő-Szerda'), time: '18:00-19:30', instructor: 'Lu Yinyin', fee: 40000 },
+  { code: '2026/66', level: 'B1.4', type: 'online', startDate: '2026.04.21.', endDate: '2026.06.11.', schedule: sched('Kedd-Csütörtök'), time: '18:00-19:30', instructor: 'Luo Chi', fee: 40000 },
 ];
 
 export const newsItems: NewsItem[] = [
@@ -216,27 +274,31 @@ export const newsItems: NewsItem[] = [
 ];
 
 export const staff: StaffMember[] = [
-  { name: 'Prof. Dr. Hamar Imre', role: 'Igazgató' },
-  { name: 'Li Denggui', role: 'Kínai igazgató' },
-  { name: 'Csikó Anna', role: 'Igazgatóhelyettes' },
-  { name: 'Veres Judit', role: 'Oktatási igazgató', email: 'veres.judit@konfuciusz.elte.hu' },
-  { name: 'Papp Evelin Csenge', role: 'Titkár', email: 'office@konfuciusz.elte.hu' },
+  { name: 'Prof. Dr. Hamar Imre', role: { hu: 'Igazgató', en: 'Director', zh: '院长' } },
+  { name: 'Li Denggui', role: { hu: 'Kínai igazgató', en: 'Chinese Director', zh: '中方院长' } },
+  { name: 'Csikó Anna', role: { hu: 'Igazgatóhelyettes', en: 'Deputy Director', zh: '副院长' } },
+  { name: 'Veres Judit', role: { hu: 'Oktatási igazgató', en: 'Educational Director', zh: '教学主任' }, email: 'veres.judit@konfuciusz.elte.hu' },
+  { name: 'Papp Evelin Csenge', role: { hu: 'Titkár', en: 'Secretary', zh: '秘书' }, email: 'office@konfuciusz.elte.hu' },
 ];
 
 export const prices: PriceItem[] = [
-  { level: 'Ismerkedő tanfolyam', price: 'Ingyenes', numericPrice: 0 },
-  { level: 'A1.1', price: '20 000 Ft', numericPrice: 20000 },
-  { level: 'A1.2', price: '28 000 Ft', numericPrice: 28000 },
-  { level: 'A2.1 – C2.5', price: '40 000 Ft', numericPrice: 40000 },
+  { level: { hu: 'Ismerkedő tanfolyam', en: 'Introductory Course', zh: '体验课程' }, price: { hu: 'Ingyenes', en: 'Free', zh: '免费' }, numericPrice: 0 },
+  { level: { hu: 'A1.1', en: 'A1.1', zh: 'A1.1' }, price: { hu: '20 000 Ft', en: '20,000 HUF', zh: '20,000福林' }, numericPrice: 20000 },
+  { level: { hu: 'A1.2', en: 'A1.2', zh: 'A1.2' }, price: { hu: '28 000 Ft', en: '28,000 HUF', zh: '28,000福林' }, numericPrice: 28000 },
+  { level: { hu: 'A2.1 – C2.5', en: 'A2.1 – C2.5', zh: 'A2.1 – C2.5' }, price: { hu: '40 000 Ft', en: '40,000 HUF', zh: '40,000福林' }, numericPrice: 40000 },
 ];
 
 export const examDates: ExamDate[] = [
   {
-    date: '2026. március 22. (vasárnap)',
-    levels: 'HSK 1-6 és HSKK szintek',
-    registrationDeadline: '2026. február 23. (pekingi idő szerint éjfél)',
-    resultsDate: '2026. április 22.',
-    note: 'Ez a nyelvvizsga az utolsó, amely még a korábbi vizsgarendszer szintjei szerint lesz megrendezve!',
+    date: { hu: '2026. március 22. (vasárnap)', en: 'March 22, 2026 (Sunday)', zh: '2026年3月22日（星期日）' },
+    levels: { hu: 'HSK 1-6 és HSKK szintek', en: 'HSK Levels 1-6 and HSKK', zh: 'HSK 1-6级和HSKK各级' },
+    registrationDeadline: { hu: '2026. február 23. (pekingi idő szerint éjfél)', en: 'February 23, 2026 (midnight Beijing time)', zh: '2026年2月23日（北京时间午夜）' },
+    resultsDate: { hu: '2026. április 22.', en: 'April 22, 2026', zh: '2026年4月22日' },
+    note: {
+      hu: 'Ez a nyelvvizsga az utolsó, amely még a korábbi vizsgarendszer szintjei szerint lesz megrendezve!',
+      en: 'This is the last exam to be held under the previous exam system levels!',
+      zh: '本次考试是按照旧考试体系等级举办的最后一次考试！',
+    },
   },
 ];
 
@@ -265,10 +327,20 @@ export const downloads: Download[] = [
 ];
 
 export const instituteFacts = [
-  { number: '5', label: 'városban' },
-  { number: '21', label: 'intézmény' },
-  { number: '2500+', label: 'diák évente' },
-  { number: '28', label: 'anyanyelvű szaktanár' },
-  { number: '800+', label: 'vizsgázó évente' },
-  { number: '2006', label: 'óta működünk' },
+  { number: '5', label: { hu: 'városban', en: 'cities', zh: '个城市' } },
+  { number: '21', label: { hu: 'intézmény', en: 'institutions', zh: '所合作机构' } },
+  { number: '2500+', label: { hu: 'diák évente', en: 'students yearly', zh: '名学生/年' } },
+  { number: '28', label: { hu: 'anyanyelvű szaktanár', en: 'native teachers', zh: '名母语教师' } },
+  { number: '800+', label: { hu: 'vizsgázó évente', en: 'examinees yearly', zh: '名考生/年' } },
+  { number: '2006', label: { hu: 'óta működünk', en: 'established', zh: '年创办' } },
 ];
+
+/* helpers used by course type display */
+export function courseTypeLabel(type: Course['type'], lang: Language): string {
+  const labels: Record<Course['type'], { hu: string; en: string; zh: string }> = {
+    online: { hu: '🖥 Online', en: '🖥 Online', zh: '🖥 线上' },
+    classroom: { hu: '🏫 Jelenléti', en: '🏫 In-person', zh: '🏫 面授' },
+    hybrid: { hu: '🔁 Hibrid', en: '🔁 Hybrid', zh: '🔁 混合' },
+  };
+  return labels[type][lang];
+}

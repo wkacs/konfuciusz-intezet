@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="hu" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans`}>
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

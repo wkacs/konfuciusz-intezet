@@ -5,11 +5,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { navItems } from "@/data/courses";
+import { useLanguage, type Language } from "@/contexts/LanguageContext";
+
+const flags: { code: Language; text: string; label: string }[] = [
+  { code: "hu", text: "HU", label: "Magyar" },
+  { code: "en", text: "EN", label: "English" },
+  { code: "zh", text: "中", label: "中文" },
+];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { lang, setLang } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -42,7 +50,7 @@ export function Navbar() {
             </div>
             <div className="hidden sm:block">
               <div className="font-bold text-sm leading-tight text-cream">
-                ELTE Konfuciusz Intézet
+                {lang === "en" ? "ELTE Confucius Institute" : lang === "zh" ? "ELTE孔子学院" : "ELTE Konfuciusz Intézet"}
               </div>
               <div className="text-xs text-accent/80">
                 孔子学院 · Budapest
@@ -62,7 +70,7 @@ export function Navbar() {
                     : "text-cream/80 hover:text-accent"
                 }`}
               >
-                {item.label}
+                {item.label[lang]}
                 {pathname === item.href ? (
                   <motion.svg
                     layoutId="activeNav"
@@ -101,22 +109,61 @@ export function Navbar() {
                 )}
               </Link>
             ))}
+
+            {/* Language Switcher - Desktop */}
+            <div className="flex items-center gap-1 ml-4 pl-4 border-l border-accent/20">
+              {flags.map((f) => (
+                <button
+                  key={f.code}
+                  onClick={() => setLang(f.code)}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+                    lang === f.code
+                      ? "text-white bg-white/20 ring-2 ring-white/60 scale-110"
+                      : "text-white/60 hover:text-white hover:bg-white/10"
+                  }`}
+                  aria-label={f.label}
+                  title={f.label}
+                >
+                  {f.text}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg text-cream hover:text-accent transition-colors"
-            aria-label="Menü"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+          {/* Language Switcher + Mobile Toggle */}
+          <div className="flex items-center gap-2 lg:hidden">
+            {/* Language Switcher - Mobile (compact) */}
+            <div className="flex items-center gap-0.5">
+              {flags.map((f) => (
+                <button
+                  key={f.code}
+                  onClick={() => setLang(f.code)}
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold transition-all duration-300 ${
+                    lang === f.code
+                      ? "text-white bg-white/20 ring-2 ring-white/60 scale-110"
+                      : "text-white/50 hover:text-white"
+                  }`}
+                  aria-label={f.label}
+                >
+                  {f.text}
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg text-cream hover:text-accent transition-colors"
+              aria-label={lang === "en" ? "Menu" : lang === "zh" ? "菜单" : "Menü"}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -144,7 +191,7 @@ export function Navbar() {
                       : "text-cream/80 hover:text-accent hover:bg-white/5"
                   }`}
                 >
-                  {item.label}
+                  {item.label[lang]}
                 </Link>
               ))}
             </div>

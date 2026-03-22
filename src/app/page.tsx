@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 
+import { useT, useLanguage } from "@/contexts/LanguageContext";
 import { SectionHeading } from "@/components/SectionHeading";
 import {
   BambooOrnament,
@@ -15,7 +16,7 @@ import {
   PhoenixOrnament,
   WaveOrnament,
 } from "@/components/ornaments";
-import { culturalCourses, instituteFacts, newsItems, startingCourses } from "@/data/courses";
+import { culturalCourses, instituteFacts, newsItems, startingCourses, courseTypeLabel } from "@/data/courses";
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCountUp } from "@/hooks/useCountUp";
 import { TiltCard } from "@/components/TiltCard";
@@ -61,7 +62,7 @@ function CharacterReveal({ text, className }: { text: string; className?: string
 function CountUpStat({ value, label }: { value: string; label: string }) {
   const numericValue = parseInt(value.replace(/[^0-9]/g, ""), 10);
   const suffix = value.replace(/[0-9]/g, "");
-  const isYear = label === "óta működünk";
+  const isYear = numericValue === 2006;
   const { count, ref } = useCountUp(numericValue, 2000);
 
   return (
@@ -77,6 +78,8 @@ function CountUpStat({ value, label }: { value: string; label: string }) {
 /* ─── main page ─── */
 
 export default function Home() {
+  const t = useT();
+  const { lang } = useLanguage();
   const upcomingCourses = startingCourses.slice(0, 6);
   const latestNews = newsItems.slice(0, 5);
   const heroRef = useRef<HTMLElement>(null);
@@ -222,7 +225,7 @@ export default function Home() {
               className="mb-8 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-5 py-2 text-sm text-accent"
             >
               <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-              2006 óta a kínai nyelv és kultúra szolgálatában
+              {t({ hu: "2006 óta a kínai nyelv és kultúra szolgálatában", en: "Serving Chinese language and culture since 2006", zh: "自2006年起致力于中国语言和文化" })}
             </motion.div>
 
             <SectionHeading
@@ -230,12 +233,12 @@ export default function Home() {
               tone="dark"
               title={
                 <>
-                  <span className="text-white">ELTE Konfuciusz</span>
+                  <span className="text-white">{t({ hu: "ELTE Konfuciusz", en: "ELTE Confucius", zh: "ELTE孔子" })}</span>
                   <br />
-                  <span className="text-gold-gradient">Intézet</span>
+                  <span className="text-gold-gradient">{t({ hu: "Intézet", en: "Institute", zh: "学院" })}</span>
                 </>
               }
-              subtitle="Hiteles kínai nyelvoktatás, gazdag kulturális programok és elegáns, inspiráló tanulási környezet Budapesten."
+              subtitle={t({ hu: "Hiteles kínai nyelvoktatás, gazdag kulturális programok és elegáns, inspiráló tanulási környezet Budapesten.", en: "Authentic Chinese language education, rich cultural programs and an elegant, inspiring learning environment in Budapest.", zh: "在布达佩斯提供正宗的中文教育、丰富的文化活动和优雅、启发性的学习环境。" })}
               subtitleClassName="max-w-xl text-lg text-cream/90"
               titleClassName="leading-[1.03]"
               className="mb-5"
@@ -258,7 +261,7 @@ export default function Home() {
                   href="/nyelvtanfolyamok"
                   className="group relative overflow-hidden rounded-sm bg-primary px-8 py-4 font-semibold text-white transition-all hover:shadow-[0_0_30px_rgba(196,30,36,0.4)] animate-glow"
                 >
-                  <span className="relative z-10">Tanfolyamok</span>
+                  <span className="relative z-10">{t({ hu: "Tanfolyamok", en: "Courses", zh: "课程" })}</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-dark to-primary transition-all group-hover:from-primary group-hover:to-primary-light" />
                 </Link>
               </MagneticButton>
@@ -267,7 +270,7 @@ export default function Home() {
                   href="/elerhetosegunk"
                   className="rounded-sm border-2 border-accent/50 px-8 py-4 font-semibold text-accent transition-all hover:border-accent hover:bg-accent/10"
                 >
-                  Kapcsolat
+                  {t({ hu: "Kapcsolat", en: "Contact", zh: "联系我们" })}
                 </Link>
               </MagneticButton>
             </div>
@@ -290,12 +293,12 @@ export default function Home() {
                 <div className="relative flex items-start gap-3 py-4">
                   <span className="shrink-0 text-7xl leading-[0.8] text-accent/40">「</span>
                   <p className="flex-1 pt-3 text-center text-xl italic leading-relaxed text-white">
-                    A nemes ember óvatos tartózkodást tanúsít mindenben, amihez nem ért.
+                    {t({ hu: "A nemes ember óvatos tartózkodást tanúsít mindenben, amihez nem ért.", en: "The superior man, in regard to what he does not know, shows a cautious reserve.", zh: "君子于其所不知，盖阙如也。" })}
                   </p>
                   <span className="shrink-0 self-end text-7xl leading-[0.8] text-accent/40">」</span>
                 </div>
                 <p className="relative mt-4 text-center font-medium text-accent">
-                  — 孔子 · Konfuciusz (XIII.3)
+                  {t({ hu: "— 孔子 · Konfuciusz (XIII.3)", en: "— 孔子 · Confucius (XIII.3)", zh: "—— 孔子（XIII.3）" })}
                 </p>
                 <div className="absolute inset-0 rounded-[2rem] animate-shimmer pointer-events-none" />
               </div>
@@ -308,7 +311,7 @@ export default function Home() {
                 style={{ transform: "rotate(3deg)" }}
               >
                 <div className="text-4xl font-bold text-accent">2500+</div>
-                <div className="text-sm text-cream/90">diák évente</div>
+                <div className="text-sm text-cream/90">{t({ hu: "diák évente", en: "students yearly", zh: "名学生/年" })}</div>
               </motion.div>
             </div>
           </motion.div>
@@ -319,7 +322,7 @@ export default function Home() {
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2.5 }}
         >
-          <span className="text-xs tracking-widest text-accent/80">GÖRGETÉS</span>
+          <span className="text-xs tracking-widest text-accent/80">{t({ hu: "GÖRGETÉS", en: "SCROLL", zh: "向下滚动" })}</span>
           <svg className="h-5 w-5 text-accent/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
@@ -386,20 +389,20 @@ export default function Home() {
             <SectionHeading
               align="center"
               compact
-              title="Az intézet számokban"
-              subtitle="汇聚数据 · Adatok egy helyen, klasszikus kertmotívumokkal keretezve."
+              title={t({ hu: "Az intézet számokban", en: "The Institute in Numbers", zh: "学院数据一览" })}
+              subtitle={t({ hu: "汇聚数据 · Adatok egy helyen, klasszikus kertmotívumokkal keretezve.", en: "汇聚数据 · Data at a glance, framed with classical garden motifs.", zh: "汇聚数据 · 数据一览，经典园林元素装饰。" })}
             />
           </div>
 
           <div className="mx-auto grid max-w-4xl grid-cols-2 gap-5 md:grid-cols-3">
             {instituteFacts.map((fact) => (
               <div
-                key={fact.label}
+                key={fact.label[lang]}
                 className="relative aspect-square overflow-hidden rounded-full p-4"
               >
                 <div className="moongate absolute inset-0 border-accent/35" />
                 <div className="absolute inset-3 rounded-full border border-accent/20" />
-                <CountUpStat value={fact.number} label={fact.label} />
+                <CountUpStat value={fact.number} label={fact.label[lang]} />
               </div>
             ))}
           </div>
@@ -424,14 +427,14 @@ export default function Home() {
             <SectionHeading
               align="center"
               tone="dark"
-              title="Kulturális tanfolyamok"
-              subtitle="Ismerkedjen meg a kínai kultúra gazdagságával kalligráfia- és festészeti tanfolyamainkon."
+              title={t({ hu: "Kulturális tanfolyamok", en: "Cultural Courses", zh: "文化课程" })}
+              subtitle={t({ hu: "Ismerkedjen meg a kínai kultúra gazdagságával kalligráfia- és festészeti tanfolyamainkon.", en: "Explore the richness of Chinese culture through our calligraphy and painting courses.", zh: "通过我们的书法和绘画课程，探索中国文化的丰富内涵。" })}
             />
           </div>
 
           <div className="grid gap-8 md:grid-cols-2">
             {culturalCourses.map((course, index) => (
-              <div key={course.title}>
+              <div key={course.title[lang]}>
                 {/* TiltCard + glassmorphism blur-md + border shimmer (spec 1.2, 3.2) */}
                 <TiltCard className="card-shimmer-border group relative overflow-hidden rounded-[1.75rem] border border-accent/20 bg-white/[0.04] backdrop-blur-md transition-all duration-500 hover:border-accent/50 hover:bg-white/[0.08]">
                   <div className="h-1.5 bg-gradient-to-r from-primary via-accent to-primary" />
@@ -447,13 +450,13 @@ export default function Home() {
                   </div>
                   <div className="relative p-8">
                     <h3 className="pr-12 text-xl font-bold text-white transition-colors group-hover:text-accent">
-                      {course.title}
+                      {course.title[lang]}
                     </h3>
-                    <p className="mb-6 mt-4 leading-relaxed text-cream/85">{course.description}</p>
+                    <p className="mb-6 mt-4 leading-relaxed text-cream/85">{course.description[lang]}</p>
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       {[
-                        { icon: "📅", label: course.startDate },
-                        { icon: "🕐", label: course.schedule },
+                        { icon: "📅", label: course.startDate[lang] },
+                        { icon: "🕐", label: course.schedule[lang] },
                         { icon: "📍", label: course.location },
                         { icon: "👨‍🏫", label: course.instructor },
                       ].map((item) => (
@@ -464,12 +467,12 @@ export default function Home() {
                       ))}
                     </div>
                     <div className="mt-6 flex items-center justify-between border-t border-accent/15 pt-6">
-                      <span className="text-lg font-bold text-accent">{course.fee}</span>
+                      <span className="text-lg font-bold text-accent">{course.fee[lang]}</span>
                       <Link
                         href="/elerhetosegunk"
                         className="rounded-sm bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-light"
                       >
-                        Jelentkezés
+                        {t({ hu: "Jelentkezés", en: "Apply", zh: "报名" })}
                       </Link>
                     </div>
                   </div>
@@ -494,14 +497,14 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeading
-              title="Induló tanfolyamok"
-              subtitle="Jelentkezzen kínai nyelvtanfolyamainkra – online, jelenléti és hibrid formában egyaránt."
+              title={t({ hu: "Induló tanfolyamok", en: "Upcoming Courses", zh: "即将开课" })}
+              subtitle={t({ hu: "Jelentkezzen kínai nyelvtanfolyamainkra – online, jelenléti és hibrid formában egyaránt.", en: "Enroll in our Chinese language courses – available online, in-person and in hybrid format.", zh: "报名参加我们的中文课程——线上、面授和混合模式均可选择。" })}
             />
             <Link
               href="/nyelvtanfolyamok"
               className="hidden items-center gap-2 font-medium text-primary transition-colors hover:text-accent sm:flex"
             >
-              Összes tanfolyam
+              {t({ hu: "Összes tanfolyam", en: "All Courses", zh: "所有课程" })}
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -522,11 +525,7 @@ export default function Home() {
                             : "bg-primary/10 text-primary"
                       }`}
                     >
-                      {course.type === "online"
-                        ? "🖥 Online"
-                        : course.type === "classroom"
-                          ? "🏫 Jelenléti"
-                          : "🔁 Hibrid"}
+                      {courseTypeLabel(course.type, lang)}
                     </span>
                     <span className="font-mono text-xs text-text-secondary">{course.code}</span>
                   </div>
@@ -540,7 +539,7 @@ export default function Home() {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-accent">🕐</span>
-                      {course.schedule}, {course.time}
+                      {course.schedule[lang]}, {course.time}
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-accent">👨‍🏫</span>
@@ -549,7 +548,7 @@ export default function Home() {
                   </div>
                   <div className="border-t border-border pt-4">
                     <span className={`text-xl font-bold ${course.isFree ? "text-jade" : "text-primary"}`}>
-                      {course.isFree ? "🎉 Ingyenes" : `${course.fee.toLocaleString("hu-HU")} Ft`}
+                      {course.isFree ? t({ hu: "🎉 Ingyenes", en: "🎉 Free", zh: "🎉 免费" }) : `${course.fee.toLocaleString("hu-HU")} Ft`}
                     </span>
                   </div>
                 </TiltCard>
@@ -562,7 +561,7 @@ export default function Home() {
               href="/nyelvtanfolyamok"
               className="inline-flex items-center gap-2 font-medium text-primary transition-colors hover:text-accent"
             >
-              Összes tanfolyam →
+              {t({ hu: "Összes tanfolyam", en: "All Courses", zh: "所有课程" })} →
             </Link>
           </div>
         </div>
@@ -585,14 +584,14 @@ export default function Home() {
           <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeading
               tone="dark"
-              title="Legfrissebb híreink"
-              subtitle="Kövesse nyomon intézetünk legfrissebb eseményeit, kulturális programjait és eredményeit."
+              title={t({ hu: "Legfrissebb híreink", en: "Latest News", zh: "最新动态" })}
+              subtitle={t({ hu: "Kövesse nyomon intézetünk legfrissebb eseményeit, kulturális programjait és eredményeit.", en: "Follow our institute's latest events, cultural programs and achievements.", zh: "关注我们学院的最新活动、文化项目和成果。" })}
             />
             <Link
               href="/hireink"
               className="hidden items-center gap-2 font-medium text-accent transition-colors hover:text-accent-light sm:flex"
             >
-              Összes hír
+              {t({ hu: "Összes hír", en: "All News", zh: "所有新闻" })}
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -689,12 +688,12 @@ export default function Home() {
               tone="dark"
               title={
                 <>
-                  Kezdje el a kínai nyelv
+                  {t({ hu: "Kezdje el a kínai nyelv", en: "Start Learning", zh: "开始学习" })}
                   <br />
-                  <span className="text-gold-gradient">tanulását</span>
+                  <span className="text-gold-gradient">{t({ hu: "tanulását", en: "Chinese", zh: "中文" })}</span>
                 </>
               }
-              subtitle="Csatlakozzon több mint 2500 diákunkhoz, és fedezze fel a kínai nyelv és kultúra szépségét."
+              subtitle={t({ hu: "Csatlakozzon több mint 2500 diákunkhoz, és fedezze fel a kínai nyelv és kultúra szépségét.", en: "Join over 2,500 students and discover the beauty of Chinese language and culture.", zh: "加入我们超过2500名学生的行列，探索中国语言和文化之美。" })}
               subtitleClassName="mx-auto max-w-2xl text-lg text-cream/90"
               className="items-center"
             />
@@ -705,7 +704,7 @@ export default function Home() {
                   href="/nyelvtanfolyamok"
                   className="group relative overflow-hidden rounded-sm bg-primary px-10 py-4 font-semibold text-white transition-all hover:shadow-[0_0_40px_rgba(196,30,36,0.3)] animate-glow"
                 >
-                  <span className="relative z-10">Tanfolyamok megtekintése</span>
+                  <span className="relative z-10">{t({ hu: "Tanfolyamok megtekintése", en: "View Courses", zh: "查看课程" })}</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-dark to-primary transition-all group-hover:from-primary group-hover:to-primary-light" />
                 </Link>
               </MagneticButton>
@@ -714,7 +713,7 @@ export default function Home() {
                   href="/araink"
                   className="rounded-sm border-2 border-accent/45 px-10 py-4 font-semibold text-accent transition-all hover:border-accent hover:bg-accent/10"
                 >
-                  Árak és kedvezmények
+                  {t({ hu: "Árak és kedvezmények", en: "Prices & Discounts", zh: "价格与优惠" })}
                 </Link>
               </MagneticButton>
             </div>

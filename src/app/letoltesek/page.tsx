@@ -4,8 +4,11 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { CloudOrnament, DragonOrnament, Lantern, BambooOrnament } from "@/components/ornaments";
 import { Fireflies } from "@/components/Particles";
 import { downloads } from "@/data/courses";
+import { useT } from "@/contexts/LanguageContext";
 
 export default function DownloadsPage() {
+  const t = useT();
+
   return (
     <div className="min-h-screen">
       {/* ── Dark Hero Section ── */}
@@ -28,8 +31,8 @@ export default function DownloadsPage() {
           <SectionHeading
             as="h1"
             tone="dark"
-            title="Letöltések"
-            subtitle="Konfuciusz Krónika – intézetünk kiadványa"
+            title={t({ hu: "Letöltések", en: "Downloads", zh: "下载中心" })}
+            subtitle={t({ hu: "Konfuciusz Krónika – intézetünk kiadványa", en: "Confucius Chronicle – our institute's publication", zh: "孔子学院通讯——学院刊物" })}
           />
         </div>
 
@@ -65,7 +68,7 @@ export default function DownloadsPage() {
                     </h3>
                     <p className="mt-1 text-sm text-text-secondary">{item.year}</p>
                     <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-primary/70 transition-colors group-hover:text-primary">
-                      PDF letöltés
+                      {t({ hu: "PDF letöltés", en: "Download PDF", zh: "下载PDF" })}
                       <svg className="h-3 w-3 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
