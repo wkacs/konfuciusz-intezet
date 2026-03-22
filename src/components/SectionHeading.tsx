@@ -14,6 +14,7 @@ type SectionHeadingProps = {
   withBrushReveal?: boolean;
   align?: "left" | "center";
   as?: "h1" | "h2";
+  compact?: boolean;
   className?: string;
   titleClassName?: string;
   subtitleClassName?: string;
@@ -27,6 +28,7 @@ export function SectionHeading({
   withBrushReveal = true,
   align = "left",
   as = "h2",
+  compact = false,
   className,
   titleClassName,
   subtitleClassName,
@@ -37,32 +39,35 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "relative flex flex-col gap-4",
+        "relative flex flex-col",
+        compact ? "gap-0" : "gap-4",
         align === "center" ? "items-center text-center" : "items-start text-left",
         className,
       )}
     >
-      <div
-        className={cn(
-          "flex items-center gap-4",
-          align === "center" ? "justify-center" : "justify-start",
-        )}
-      >
-        {withSeal && (
-          <SealMark
-            className={cn(
-              isDark
-                ? "border-accent/85 bg-primary/15 text-accent shadow-[0_0_30px_rgba(196,30,36,0.22)]"
-                : "border-primary/80 bg-primary/5 text-primary",
-            )}
-          />
-        )}
-        <div className={cn("flex items-center gap-3", isDark ? "text-accent/90" : "text-accent-dark")}>
-          <span className="hidden h-px w-12 bg-current/45 sm:block" />
-          <CloudOrnament className="h-6 w-28" />
-          <span className="hidden h-px w-12 bg-current/45 sm:block" />
+      {!compact && (
+        <div
+          className={cn(
+            "flex items-center gap-4",
+            align === "center" ? "justify-center" : "justify-start",
+          )}
+        >
+          {withSeal && (
+            <SealMark
+              className={cn(
+                isDark
+                  ? "border-accent/85 bg-primary/15 text-accent shadow-[0_0_30px_rgba(196,30,36,0.22)]"
+                  : "border-primary/80 bg-primary/5 text-primary",
+              )}
+            />
+          )}
+          <div className={cn("flex items-center gap-3", isDark ? "text-accent/90" : "text-accent-dark")}>
+            <span className="hidden h-px w-12 bg-current/45 sm:block" />
+            <CloudOrnament className="h-6 w-28" />
+            <span className="hidden h-px w-12 bg-current/45 sm:block" />
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="relative inline-block max-w-full">
         {withBrushReveal && (
@@ -97,12 +102,14 @@ export function SectionHeading({
         </p>
       )}
 
-      <WaveOrnament
-        className={cn(
-          "h-5 w-32",
-          isDark ? "text-accent/75" : "text-accent/70",
-        )}
-      />
+      {!compact && (
+        <WaveOrnament
+          className={cn(
+            "h-5 w-32",
+            isDark ? "text-accent/75" : "text-accent/70",
+          )}
+        />
+      )}
     </div>
   );
 }

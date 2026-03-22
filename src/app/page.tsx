@@ -13,6 +13,7 @@ import {
   LotusOrnament,
   PagodaRoofOrnament,
   PhoenixOrnament,
+  WaveOrnament,
 } from "@/components/ornaments";
 import { culturalCourses, instituteFacts, newsItems, startingCourses } from "@/data/courses";
 import { useMousePosition } from "@/hooks/useMousePosition";
@@ -326,18 +327,65 @@ export default function Home() {
       </section>
 
       {/* ═══════════ STATISTICS ═══════════ */}
-      <section className="silk-texture relative overflow-hidden bg-cream pt-4 pb-10 chinese-pattern wave-divider wave-divider-dark">
-        <div className="absolute inset-0 coin-pattern opacity-[0.25]" />
-        <div className="absolute inset-y-12 left-[-4rem] hidden aspect-square w-72 moongate border-accent/35 opacity-60 lg:block" />
-        <div className="absolute right-[-5rem] top-8 hidden aspect-square w-80 moongate border-accent/25 opacity-50 lg:block" />
-        <div className="absolute bottom-0 right-[18%] hidden h-28 w-40 text-accent/20 lg:block">
+      <section className="silk-texture relative overflow-hidden bg-cream pt-14 pb-10 chinese-pattern wave-divider wave-divider-dark">
+        <div style={{ position: 'absolute', inset: 0 }} className="coin-pattern opacity-[0.25]" />
+        {/* Clouds - xiangyun - dúsan szétszórva */}
+        <div style={{ position: 'absolute' }} className="left-2 top-2 hidden h-20 w-64 text-accent/45 lg:block">
+          <CloudOrnament className="h-full w-full" />
+        </div>
+        <div style={{ position: 'absolute' }} className="right-[12%] top-0 hidden h-16 w-52 text-accent/35 lg:block">
+          <CloudOrnament className="h-full w-full" />
+        </div>
+        <div style={{ position: 'absolute', transform: 'scaleX(-1)' }} className="left-[20%] top-[40%] hidden h-14 w-44 text-accent/25 lg:block">
+          <CloudOrnament className="h-full w-full" />
+        </div>
+        <div style={{ position: 'absolute' }} className="right-2 bottom-[35%] hidden h-18 w-56 text-accent/30 lg:block">
+          <CloudOrnament className="h-full w-full" />
+        </div>
+        <div style={{ position: 'absolute', transform: 'scaleX(-1)' }} className="bottom-6 left-[8%] hidden h-16 w-52 text-accent/35 lg:block">
+          <CloudOrnament className="h-full w-full" />
+        </div>
+        <div style={{ position: 'absolute' }} className="bottom-2 right-[30%] hidden h-12 w-40 text-accent/20 lg:block">
+          <CloudOrnament className="h-full w-full" />
+        </div>
+        {/* Dragon & Phoenix */}
+        <div style={{ position: 'absolute' }} className="left-[3%] bottom-12 hidden h-16 w-48 text-accent/30 lg:block">
+          <DragonOrnament className="h-full w-full" />
+        </div>
+        <div style={{ position: 'absolute' }} className="right-[3%] top-10 hidden h-16 w-48 text-accent/25 lg:block">
+          <PhoenixOrnament className="h-full w-full" />
+        </div>
+        {/* Lotus */}
+        <div style={{ position: 'absolute' }} className="bottom-0 right-[16%] hidden h-32 w-44 text-accent/35 lg:block">
           <LotusOrnament className="h-full w-full" />
+        </div>
+        <div style={{ position: 'absolute' }} className="left-[14%] top-[12%] hidden h-20 w-28 text-accent/20 lg:block">
+          <LotusOrnament className="h-full w-full" />
+        </div>
+        {/* Wave ornaments - arany hullámok */}
+        <div style={{ position: 'absolute' }} className="left-[4%] top-[55%] hidden h-8 w-36 text-accent/35 lg:block">
+          <WaveOrnament className="h-full w-full" />
+        </div>
+        <div style={{ position: 'absolute' }} className="right-[6%] bottom-[38%] hidden h-8 w-32 text-accent/30 lg:block">
+          <WaveOrnament className="h-full w-full" />
+        </div>
+        {/* Pagoda roof - tetőív a szekció tetején */}
+        <div style={{ position: 'absolute' }} className="left-[28%] top-0 hidden h-10 w-[44%] text-accent/20 lg:block">
+          <PagodaRoofOrnament className="h-full w-full" />
+        </div>
+        {/* Extra clouds */}
+        <div style={{ position: 'absolute' }} className="right-[38%] top-[18%] hidden h-10 w-32 text-accent/25 lg:block">
+          <CloudOrnament className="h-full w-full" />
+        </div>
+        <div style={{ position: 'absolute', transform: 'scaleX(-1)' }} className="left-[32%] bottom-[18%] hidden h-10 w-28 text-accent/20 lg:block">
+          <CloudOrnament className="h-full w-full" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-4">
+          <div className="mb-0">
             <SectionHeading
               align="center"
+              compact
               title="Az intézet számokban"
               subtitle="汇聚数据 · Adatok egy helyen, klasszikus kertmotívumokkal keretezve."
             />
