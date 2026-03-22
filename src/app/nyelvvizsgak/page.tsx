@@ -219,6 +219,7 @@ export default function ExamsPage() {
           </div>
         </div>
       </section>
+
     </div>
   );
 }

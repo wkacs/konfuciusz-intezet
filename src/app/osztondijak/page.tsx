@@ -1,7 +1,6 @@
 "use client";
 
 import { SectionHeading } from "@/components/SectionHeading";
-import { MagneticButton } from "@/components/MagneticButton";
 import { TiltCard } from "@/components/TiltCard";
 import { Fireflies } from "@/components/Particles";
 import { CloudOrnament, PhoenixOrnament, LotusOrnament, BambooOrnament, DragonOrnament } from "@/components/ornaments";
@@ -145,14 +144,12 @@ export default function ScholarshipsPage() {
               Érdeklődjön irodánkban a részletekről és a pályázati feltételekről.
             </p>
 
-            <MagneticButton>
-              <a
-                href="mailto:kristaly.agnes@konfuciusz.elte.hu"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 font-medium text-cream shadow-lg transition-colors hover:bg-primary-light"
-              >
-                ✉️ Érdeklődés
-              </a>
-            </MagneticButton>
+            <a
+              href="mailto:kristaly.agnes@konfuciusz.elte.hu"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 font-medium text-cream shadow-lg transition-colors hover:bg-primary-light"
+            >
+              ✉️ Érdeklődés
+            </a>
           </div>
         </div>
       </section>

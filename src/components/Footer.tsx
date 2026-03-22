@@ -75,7 +75,6 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-cream/85">
               <li><Link href="/nyelvtanfolyamok" className="transition-colors duration-300 hover:text-accent">Nyelvtanfolyamok</Link></li>
               <li><Link href="/nyelvvizsgak" className="transition-colors duration-300 hover:text-accent">Nyelvvizsgák</Link></li>
-              <li><Link href="/araink" className="transition-colors duration-300 hover:text-accent">Áraink</Link></li>
               <li><Link href="/osztondijak" className="transition-colors duration-300 hover:text-accent">Kínai Ösztöndíjak</Link></li>
               <li><Link href="/hireink" className="transition-colors duration-300 hover:text-accent">Híreink</Link></li>
             </ul>
@@ -130,7 +129,7 @@ export function Footer() {
             <span className="hidden h-px w-14 bg-accent/35 sm:block" />
           </div>
           <p className="mt-4 text-sm italic text-cream/80">
-            &ldquo;A nemes ember óvatos tartózkodást tanúsít mindenben, amihez nem ért.&rdquo; — 孔子
+            &ldquo;A nemes ember óvatos tartózkodást tanúsít mindenben, amihez nem ért.&rdquo; — 孔子 (Kǒngzǐ)
           </p>
         </div>
 

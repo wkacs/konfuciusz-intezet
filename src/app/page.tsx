@@ -65,10 +65,10 @@ function CountUpStat({ value, label }: { value: string; label: string }) {
 
   return (
     <div className="relative flex h-full flex-col items-center justify-center text-center">
-      <div ref={ref} className="mb-2 text-3xl font-bold text-primary">
+      <div ref={ref} className="mb-1 text-4xl font-bold text-primary lg:text-[2.5rem]">
         {isYear ? value : `${count.toLocaleString("hu-HU")}${suffix}`}
       </div>
-      <div className="text-sm text-text-secondary">{label}</div>
+      <div className="text-xs font-medium text-text-secondary lg:text-sm">{label}</div>
     </div>
   );
 }
@@ -286,14 +286,12 @@ export default function Home() {
                 <div className="absolute inset-[18px] rounded-[1.65rem] border border-accent/15 pointer-events-none" />
                 <PagodaRoofOrnament className="absolute left-1/2 top-3 h-10 w-[82%] -translate-x-1/2 text-accent/45" />
                 <LotusOrnament className="absolute bottom-4 right-4 h-16 w-20 text-accent/20" />
-                <div className="relative mb-6 text-center">
-                  <span className="text-6xl text-accent/40">「</span>
-                </div>
-                <p className="relative text-center text-xl italic leading-relaxed text-white">
-                  A nemes ember óvatos tartózkodást tanúsít mindenben, amihez nem ért.
-                </p>
-                <div className="relative text-center">
-                  <span className="text-6xl text-accent/40">」</span>
+                <div className="relative flex items-start gap-3 py-4">
+                  <span className="shrink-0 text-7xl leading-[0.8] text-accent/40">「</span>
+                  <p className="flex-1 pt-3 text-center text-xl italic leading-relaxed text-white">
+                    A nemes ember óvatos tartózkodást tanúsít mindenben, amihez nem ért.
+                  </p>
+                  <span className="shrink-0 self-end text-7xl leading-[0.8] text-accent/40">」</span>
                 </div>
                 <p className="relative mt-4 text-center font-medium text-accent">
                   — 孔子 · Konfuciusz (XIII.3)
@@ -328,7 +326,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════ STATISTICS ═══════════ */}
-      <section className="silk-texture relative overflow-hidden bg-cream py-14 chinese-pattern wave-divider wave-divider-dark">
+      <section className="silk-texture relative overflow-hidden bg-cream pt-4 pb-10 chinese-pattern wave-divider wave-divider-dark">
         <div className="absolute inset-0 coin-pattern opacity-[0.25]" />
         <div className="absolute inset-y-12 left-[-4rem] hidden aspect-square w-72 moongate border-accent/35 opacity-60 lg:block" />
         <div className="absolute right-[-5rem] top-8 hidden aspect-square w-80 moongate border-accent/25 opacity-50 lg:block" />
@@ -337,7 +335,7 @@ export default function Home() {
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-6">
+          <div className="mb-4">
             <SectionHeading
               align="center"
               title="Az intézet számokban"
@@ -345,7 +343,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
+          <div className="mx-auto grid max-w-4xl grid-cols-2 gap-5 md:grid-cols-3">
             {instituteFacts.map((fact) => (
               <div
                 key={fact.label}

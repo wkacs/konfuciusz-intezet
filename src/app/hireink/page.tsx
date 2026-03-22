@@ -63,8 +63,8 @@ export default function NewsPage() {
                     className="group relative flex items-center gap-6 rounded-[1.25rem] border border-border bg-white p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-0.5"
                   >
                     {/* Corner decorations */}
-                    <div className="absolute left-0 top-0 h-4 w-4 border-l-2 border-t-2 border-accent/0 transition-all group-hover:border-accent/40" />
-                    <div className="absolute bottom-0 right-0 h-4 w-4 border-b-2 border-r-2 border-accent/0 transition-all group-hover:border-accent/40" />
+                    <div className="absolute -top-0.5 -left-0.5 h-4 w-4 border-l-2 border-t-2 border-accent/0 transition-all group-hover:border-accent/40" />
+                    <div className="absolute -bottom-0.5 -right-0.5 h-4 w-4 border-b-2 border-r-2 border-accent/0 transition-all group-hover:border-accent/40" />
 
                     {/* Chop-mark date stamp */}
                     <div className="chop-mark hidden h-16 w-16 flex-shrink-0 flex-col items-center justify-center rounded-sm text-white sm:flex">

@@ -59,7 +59,6 @@ export const navItems = [
   { label: 'Nyitólap', href: '/' },
   { label: 'Nyelvtanfolyamok', href: '/nyelvtanfolyamok' },
   { label: 'Nyelvvizsgák', href: '/nyelvvizsgak' },
-  { label: 'Áraink', href: '/araink' },
   { label: 'Kínai ösztöndíjak', href: '/osztondijak' },
   { label: 'Letöltések', href: '/letoltesek' },
   { label: 'Híreink', href: '/hireink' },

@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { startingCourses, culturalCourses } from "@/data/courses";
+import { startingCourses, culturalCourses, prices } from "@/data/courses";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TiltCard } from "@/components/TiltCard";
-import { MagneticButton } from "@/components/MagneticButton";
 import { Fireflies } from "@/components/Particles";
 import {
   BambooOrnament,
@@ -269,6 +268,79 @@ export default function CoursesPage() {
 
       </section>
 
+      {/* ═══════════ PRICING — Light ═══════════ */}
+      <section className="relative bg-cream silk-texture chinese-pattern py-20">
+        <div className="pointer-events-none absolute inset-0 coin-pattern opacity-[0.04]" />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            title="Áraink"
+            tone="light"
+            withSeal={false}
+            className="mb-12"
+          />
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {prices.map((item) => (
+              <div
+                key={item.level}
+                className={`relative rounded-[1.5rem] border p-8 text-center transition-all hover:shadow-lg ${
+                  item.numericPrice === 0
+                    ? "border-jade/20 bg-jade/5 hover:border-jade/40"
+                    : item.numericPrice === 40000
+                      ? "border-primary/30 bg-white shadow-lg shadow-primary/5"
+                      : "border-border bg-white hover:border-accent/30"
+                }`}
+              >
+                <div className="absolute -top-0.5 -left-0.5 w-2 h-2 border-t-2 border-l-2 border-accent/60" />
+                <div className="absolute -top-0.5 -right-0.5 w-2 h-2 border-t-2 border-r-2 border-accent/60" />
+                <div className="absolute -bottom-0.5 -left-0.5 w-2 h-2 border-b-2 border-l-2 border-accent/60" />
+                <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 border-b-2 border-r-2 border-accent/60" />
+
+                {item.numericPrice === 40000 && (
+                  <>
+                    <div className="absolute left-0 right-0 top-0 h-1 rounded-t-[1.5rem] bg-gradient-to-r from-primary via-accent to-primary" />
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-lg bg-primary px-3 py-1 text-xs font-semibold text-cream">
+                      Legnépszerűbb
+                    </div>
+                  </>
+                )}
+
+                <h3 className="mb-2 text-lg font-bold text-text-primary">{item.level}</h3>
+                <div
+                  className={`mb-4 text-3xl font-bold ${item.numericPrice === 0 ? "text-jade" : "text-primary"}`}
+                >
+                  {item.price}
+                </div>
+                <div className="text-sm text-text-secondary">
+                  {item.numericPrice === 0
+                    ? "Ismerkedjen meg a kínai nyelvvel!"
+                    : "per tanfolyam / modul"}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* ELTE Discount */}
+          <div className="mt-12 relative rounded-[1.5rem] border border-accent/20 bg-white p-8 shadow-sm">
+            <div className="absolute -top-0.5 -left-0.5 w-3 h-3 border-t-2 border-l-2 border-accent/60" />
+            <div className="absolute -top-0.5 -right-0.5 w-3 h-3 border-t-2 border-r-2 border-accent/60" />
+            <div className="absolute -bottom-0.5 -left-0.5 w-3 h-3 border-b-2 border-l-2 border-accent/60" />
+            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 border-b-2 border-r-2 border-accent/60" />
+
+            <div className="flex items-start gap-5">
+              <span className="text-5xl">🎓</span>
+              <div>
+                <h3 className="mb-2 text-2xl font-bold text-primary">50% kedvezmény ELTE-seknek!</h3>
+                <p className="text-text-secondary">
+                  ELTE hallgatók, ELTE Alumni tagok és ELTE alkalmazottak 50%-os kedvezménnyel vehetik igénybe a teljes árú, vagyis a 40 000 Ft-os nyelvtanfolyamainkat. A kedvezmény más akciókkal nem összevonható.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════ PRIVATE LESSONS — Light ═══════════ */}
       <section className="relative bg-cream silk-texture chinese-pattern py-20">
         <div className="pointer-events-none absolute inset-0 coin-pattern opacity-[0.04]" />
@@ -293,14 +365,12 @@ export default function CoursesPage() {
             </p>
             <p className="text-sm">
               Érdeklődés:{" "}
-              <MagneticButton className="inline-block">
-                <a
-                  href="mailto:veres.judit@konfuciusz.elte.hu"
-                  className="font-medium text-primary hover:text-accent"
-                >
-                  veres.judit@konfuciusz.elte.hu
-                </a>
-              </MagneticButton>
+              <a
+                href="mailto:veres.judit@konfuciusz.elte.hu"
+                className="font-medium text-primary hover:text-accent transition-colors"
+              >
+                veres.judit@konfuciusz.elte.hu
+              </a>
             </p>
           </div>
         </div>
