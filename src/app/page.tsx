@@ -662,7 +662,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 80, damping: 18 }}
-            className="scroll-frame rounded-[2rem] border border-accent/30 bg-white/[0.05] px-6 py-12 backdrop-blur-md sm:px-12"
+            className="scroll-frame rounded-[2rem] border border-accent/30 bg-white/[0.05] px-6 pb-16 pt-12 backdrop-blur-md sm:px-12"
           >
             <div className="mb-6 flex items-center justify-center gap-4">
               <motion.div
@@ -698,7 +698,7 @@ export default function Home() {
               className="items-center"
             />
 
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <div className="mb-6 mt-10 flex flex-wrap justify-center gap-4">
               <MagneticButton>
                 <Link
                   href="/nyelvtanfolyamok"
